@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html leng="es">
+
+<head>
+    <meta charset="UTF-16">
+    <title>MiViaje.com</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="only screen and (max-width: 1200px)" href="styles/style.css">
+    <link rel="stylesheet" media="only screen and (max-width: 940px)" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body >
+    <header class="headeAzul">
+        <h1 class="logoblanco"><a title="logoFooter" href="index.html">
+            <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinos.html" style="color:#E48D36">Destinos</a>
+            <a href="404.html">MiReserva</a>
+            <a href="404.html">Contactenos</a>
+        </nav>
+    </header>
+    <main>
+        <div class = "reserva" >
+            <div class="hoteleSeleccionado">
+                <div class ="cajaHotelSelec" id = "hotelSeleccionadoApi">
+    
+                </div>
+                
+            </div>
+            <div class = "formularioReserva">
+                <form onsubmit="obtenerInfo(event)" >
+                    <div class ="cajasTexto" id ="form_reserva">
+                        <!-- CREACIÓN DE FORMULARIO -->
+                        <!-- El for relaciona la caja de texto con el titulo -->
+                        <label for = "nombrePersona" >NOMBRE</label>
+                        <input type = "text" id = "nombrePersona" name = "nombrePersona" class ="inputForm" required >
+    
+                        <label for = "apellidoPersona">APELLIDO</label>
+                        <input type = "text" id = "apellidoPersona" name = "apellidoPersona" class ="inputForm" required>
+    
+                        <label for = "correoPersona">CORREO ELECTRONICO</label>
+                        <input type = "email" id = "correoPersona" name = "correoPersona" class ="inputForm" required
+                        placeholder="email@domino.com">
+    
+                        <label for = "telefonoPersona">TELÉFONO</label>
+                        <input type = "tel" id = "telefonoPersona" name = "telefonoPersona" class ="inputForm" required
+                        placeholder="(xx) xxx xxx xxxx" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                        
+                        <label for = "tipoDocumento">TIPO DE DOCUMENTO</label>
+                        <select class ="inputForm" name = "tipoDocumento" id = "tipoDocumento" required >
+                            <option value="CC">Cedula de Ciudadania</option>
+                            <option value="CE">Cedula de Extranjeria</option>
+                            <option value="PA">Pasaporte</option>
+                        </select>
+
+                        <label for = "numeroDocumento">NÚMERO DOCUMENTO</label>
+                        <input type ="number" id ="numeroDocumento" name = "numeroDocumento" class ="inputForm" required/>
+
+                        
+                        
+                        <!--  Caja de texto que se puede manipular el tamaño 
+                        se le da un tamaño por medio de columnas (cols) y filas (rows)
+                        <label for = "mensaje">COMENTARIOS</label>
+                        <textarea cols= "72" rows="4" id = "mensaje" class ="inputForm"></textarea> -->
+                    </div>
+                    <section>
+                         <!-- Boton -->
+                    <input type="submit" value="REALIZAR RESERVA" class="boton">
+                    <input type="reset" value="CANCELAR RESERVA" class="boton2" onclick="location.href='index.html'">
+                    </section>
+                       
+                </form>
+            </div>
+
+        </div>
+       
+
+    </main>
+    <footer>
+        <div class="conocenos">
+            <p>Conócenos</p>
+            <ul class="listaConocenos">
+                <a href="404.html"><li>¿Qué es MiViaje.com?</li></a> 
+                <a href="404.html"><li>Privacidad</li></a> 
+                <a href="404.html"><li>Términos</li></a> 
+                <a href="404.html"> <li> Mapa del sitio</li></a> 
+                <a href="404.html"><li> Datos de la empresa</li></a> 
+            </ul>
+
+        </div>
+        <div class="dudas">
+            <p>¿Dudas?<br>
+                Encuéntranos</p>
+                <ul class="listaDudas">
+                    <a href="404.html"><li>Centro de ayuda</li></a>
+                    <a href="404.html"><li>Reversión de Pagos</li></a>
+                    <li>(xxx) xxx xxxx xx</li>
+                    <li>info@miviaje.com</li>
+                </ul>
+
+        </div>
+
+        <h1 class=logoFooter><a title="logoFooter" href="Index.html">
+                <img id="logoFooter" src="Image/LogoBlanco.svg" alt="logoFooter"></a></h1>
+        <div class="redesSociales">
+
+            <a href="404.html"><img src="Image/Instagram.png" class="instagram"></a>
+            <a href="404.html"><img src="Image/Facebook.png" class="facebook"></a>
+            <a href="404.html"><img src="Image/Telegram.png" class="telegram"></a>
+            <a href="404.html"><img src="Image/Twitter.png" class="twitter"></a>
+
+
+        </div>
+        <p class="txtFinal">Copyright - Miviaje.com - 2022</p>
+
+    
+    </footer>
+</body>
+    <script src="script-form-reserva.js"> </script>
+</html> 

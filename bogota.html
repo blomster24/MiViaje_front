@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html leng="es">
+
+<head>
+    <meta charset="UTF-16">
+    <title>MiViaje.com</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="only screen and (max-width: 1200px)" href="styles/style.css">
+    <link rel="stylesheet" media="only screen and (max-width: 940px)" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="headeAzul">
+        <h1 class="logoblanco"><a title="logoFooter" href="index.html">
+                <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinos.html" style="color:#E48D36">Destinos</a>
+            <a href="404.html">MiReserva</a>
+            <a href="404.html">Contactenos</a>
+        </nav>
+    </header>
+    <main>
+        <article id="box">
+            <form class="formulario">
+                <section class="cajaPrincipal">
+                    <section class="ciudad">
+                        <div class="imgCiudad"><img src="Image/VectoricoCiudad.svg"></div>
+                        <div class="datosCiudad">
+                            <p>Ciudad</p>
+                            <select id="ciudad" name="ciudad" class="select1" style="width: 147px;">
+                                <option disabled selected value="DESTINO">DESTINO &nbsp; &nbsp; &nbsp; &#62;</option>
+                                <option value="BARICHARA">BARICHARA</option>
+                                <option value="BOGOTA">BOGOTÁ</option>
+                                <option value="CALI">CALÍ</option>
+                                <option value="CARTAGENA">CARTAGENA</option>
+                                <option value="MDELLIN">MEDELLIN</option>
+                                <option value="SAN ANDRES">SAN ANDRES</option>
+                                <option value="SANTA MARTA">SANTA MARTA</option>
+                                <option value="LETICIA">LETICIA</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section class="checkIn">
+                        <div class="imgCalendarioIN"><img src="Image/Vectorcalendario.svg"></div>
+                        <div class="datosCheckIN">
+                            <p>Check In</p>
+                            <input id="infoIN" class="cajaIn" type="date" max="2023-05-01" style="width: 100px;"
+                                onkeydown="return false">
+                        </div>
+                    </section>
+                    <section class="checkOut">
+                        <div class="imgCalendarioOut"><img src="Image/Vectorcalendario.svg"></div>
+                        <div class="datosCheckOut">
+                            <p>Check Out</p>
+                            <input id="infoOUT" class="cajaOut" type="date" max="2023-05-01" style="width: 100px;"
+                                onkeydown="return false">
+                        </div>
+                    </section>
+                    <section class="huespedes">
+                        <div class="imgHuespedes"><img src="Image/icoHuesped.svg "></div>
+                        <div class="datosHuespedes">
+                            <p>Huespedes</p>
+                            <select id="numAdult" class="select2" tag="1">
+                                <option value="opcion 0">1 Adulto</option>
+                                <option value="opcion 1" selected>2 Adultos</option>
+                                <option value="opcion 2">3 Adultos</option>
+                                <option value="opcion 3">4 Adultos</option>
+                            </select>
+                        </div>
+                        <div>
+                            <img class="img3H" src="Image/icoHab.svg">
+                            <select id = "numHabiDS"class="select3" style="width: 80px;">
+                                <option value="opcion 0">1 Hab</option>
+                                <option value="opcion 1">2 Hab</option>
+                                <option value="opcion 2">3 Hab</option>
+                                <option value="opcion 3">4 Hab</option>
+                            </select>
+                        </div>
+                    </section>
+                     <!-- BOTON BUSCAR -->
+                <div class="buscar" type="submit" id="btnBuscar" onclick="funcionBuscar()">
+                    <div class="imgbuscar"><img src="Image/lupa.svg"></div>
+                </div>
+                </section>
+            </form>
+        </article>
+
+        <article class="hoteles">
+            <section class="hotel1" id = "hoteldisponible">
+               
+            </section>
+        </article>
+
+    </main>
+    <footer>
+        <div class="conocenos">
+            <p>Conócenos</p>
+            <ul class="listaConocenos">
+                <a href="404.html">
+                    <li>¿Qué es MiViaje.com?</li>
+                </a>
+                <a href="404.html">
+                    <li>Privacidad</li>
+                </a>
+                <a href="404.html">
+                    <li>Términos</li>
+                </a>
+                <a href="404.html">
+                    <li> Mapa del sitio</li>
+                </a>
+                <a href="404.html">
+                    <li> Datos de la empresa</li>
+                </a>
+            </ul>
+
+        </div>
+        <div class="dudas">
+            <p>¿Dudas?<br>
+                Encuéntranos</p>
+            <ul class="listaDudas">
+                <a href="404.html">
+                    <li>Centro de ayuda</li>
+                </a>
+                <a href="404.html">
+                    <li>Reversión de Pagos</li>
+                </a>
+                <li>(xxx) xxx xxxx xx</li>
+                <li>info@miviaje.com</li>
+            </ul>
+
+        </div>
+
+        <h1 class=logoFooter><a title="logoFooter" href="Index.html">
+                <img id="logoFooter" src="Image/LogoBlanco.svg" alt="logoFooter"></a></h1>
+        <div class="redesSociales">
+
+            <a href="404.html"><img src="Image/Instagram.png" class="instagram"></a>
+            <a href="404.html"><img src="Image/Facebook.png" class="facebook"></a>
+            <a href="404.html"><img src="Image/Telegram.png" class="telegram"></a>
+            <a href="404.html"><img src="Image/Twitter.png" class="twitter"></a>
+
+
+        </div>
+        <p class="txtFinal">Copyright - Miviaje.com - 2022</p>
+
+
+    </footer>
+</body>
+<script src="script-destino-seleccionado.js"> </script>
+
+
+</html>

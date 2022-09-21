@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html leng="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MiViaje.com</title>
+    <link rel="shortcut icon" href="Image/favicon.png">
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="only screen and (max-width: 1200px)" href="styles/style.css">
+    <link rel="stylesheet" media="only screen and (max-width: 940px)" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1 class="logo"><a title="logoInicio" href="#">
+                    <img id="logo" src="Image/logoNaranja.svg" alt="logoInicio"></h1></a>
+            <nav>
+                <a href="index.html" style="color:#E48D36">Home</a>
+                <a href="destinos.html">Destinos</a>
+                <a href="404.html">MiReserva</a>
+                <a href="404.html">Contactenos</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+    <!-- ::::: TEXTO BANNER ::::: -->
+        <p class="txtBanner">VIAJA, VIVE, EXISTE</p>
+        <p class="txtBanner2"><a href="destinos.html">Destinos Populares</p></a>
+    <!-- ::::: CARDS / BANNER ::::: -->
+        <section class="cardpos">
+            <div class="cardP1"><a href="destinos.html">
+                    <div class="card1"><img class="destinop1" src="Image/bogota.jpg"></div>
+                    <div class="txtCard1">
+                        <h4><b>Viaja a Bogotá</b></h4>
+                        <p>Desde $50.000 la noche</p>
+                    </div></a>
+            </div>
+            <div class="cardP2"><a href="destinos.html">
+                    <div class="card2"><img class="destinop2" src="Image/medellin.jpg"></div>
+                    <div class="txtCard1">
+                        <h4><b>Viaja a Medellin</b></h4>
+                        <p>Desde $42.000 la noche</p>
+                    </div></a>
+            </div>
+            <div class="cardP3"><a href="destinos.html">
+                    <div class="card3"><img class="destinop3" src="Image/Cartagena.png"></div>
+                    <div class="txtCard1">
+                        <h4><b>Viaja a Cartagena</b></h4>
+                        <p>Desde $20.000 la noche</p>
+                    </div></a>
+            </div>
+            <!-- BANNER  -->
+            <div class="cajaBanner"><img class="banner" src="Image/Banner1.jpg"></div>
+        </section>
+
+    <!-- ::::: MODALES ::::: -->
+        <!-- MODAL - SELECCIONE UN DESTINO  -->
+        <div id="openModal" class="modalDialog" onclick="javascript:CerrarModal();">
+            <div class="modal1">
+                <a href="#close" title="close" class="close" onclick="javascript:CerrarModal();">X</a>
+                <p><span style="font-size: 15px; font-weight: 200;">POR FAVOR<br></span><span>SELECCIONA UN
+                        DESTINO</span></p>
+                <img src="Image/esperandoRespuesta.svg">
+            </div>
+        </div>
+        <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
+        <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
+            <div class="modal2">
+                <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
+                <p><span style="font-size: 14px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
+                        <span> REVISA TU FECHA DE CHECK OUT</span></p>
+                <img src="Image/verificacionFechas.svg">
+            </div>
+        </div>
+        
+    <!-- ::::: FORMULARIO RESERVA INDEX ::::: -->  
+        <form id ="formReserva" class="formulario">
+            <section class="cajaPrincipal">
+                <!-- SELEC DESTINO  -->
+                <div class="ciudad">
+                    <div class="imgCiudad"><img src="Image/VectoricoCiudad.svg"></div>
+                    <div class="datosCiudad">
+                        <p>Ciudad</p>
+                        <select id="ciudad" name="ciudad" class="select1" style="width: 147px;">
+                            <option value="DESTINO"selected disabled>DESTINO &nbsp; &nbsp; &nbsp; &#62;</option>
+                            <option value="BARICHARA">BARICHARA</option>
+                            <option value="BOGOTA">BOGOTÁ</option>
+                            <option value="CALI">CALÍ</option>
+                            <option value="CARTAGENA">CARTAGENA</option>
+                            <option value="MDELLIN">MEDELLIN</option>
+                            <option value="SAN ANDRES">SAN ANDRES</option>
+                            <option value="SANTA MARTA">SANTA MARTA</option>
+                            <option value="LETICIA">LETICIA</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- CHECK IN  -->
+                <section class="checkIn">
+                    <div class="imgCalendarioIN"><img src="Image/Vectorcalendario.svg"></div>
+                    <div class="datosCheckIN">
+                        <p>Check In</p>
+                        <input id="fechaIN" class="cajaIn" type="date" max="2023-05-01" style="width: 100px;" min="" value=""
+                            onkeydown="return false">
+                    </div>
+                </section>
+                <!-- CHECK OUT  -->
+                <section class="checkOut">
+                    <div class="imgCalendarioOut"><img src="Image/Vectorcalendario.svg"></div>
+                    <div class="datosCheckOut">
+                        <p>Check Out</p>
+                        <input id="fechaOut" class="cajaOut" type="date" max="2023-05-01" style="width: 100px;" min="" value=""
+                            onkeydown="return false">
+                    </div>
+                </section>
+                <!-- HUESPEDES -->
+                <section class="huespedes">
+                    <div class="imgHuespedes"><img src="Image/icoHuesped.svg "></div>
+                    <div class="datosHuespedes">
+                        <p>Huespedes</p>
+                        <select id ="numAdult" class="select2">
+                            <option value="opcion 0">1 Adulto</option>
+                            <option value="opcion 1" selected>2 Adultos</option>
+                            <option value="opcion 2">3 Adultos</option>
+                            <option value="opcion 3">4 Adultos</option>
+                        </select>
+                    </div>
+                    <!-- HABITACIONES -->
+                    <div>
+                        <img class="img3H" src="Image/icoHab.svg">
+                        <select id ="numHab" class="select3" style="width: 80px;">
+                            <option value="opcion 0">1 hab</option>
+                            <option value="opcion 1">2 hab</option>
+                            <option value="opcion 2">3 hab</option>
+                            <option value="opcion 3">4 hab</option>
+                        </select>
+                    </div>
+                </section>
+                <!-- BOTON BUSCAR -->
+                <div class="buscar" type="submit" id="btnBuscar" onclick="funcionBuscar()">
+                    <div class="imgbuscar"><img src="Image/lupa.svg"></div>
+                </div>
+            </section>
+        </form>
+
+    <!-- ::::: RECOMENDADO DEL DIA ::::: -->
+        <section class="recoDia">
+            <!-- IMAGEN RECOMENDADO DEL DIA -->
+            <div class="cajaDia"><img src="Image/Barichara.jpg"></div>
+            <!-- INFORMACION RECOMENDADO DEL DIA -->
+            <section class="cajaText">
+                <p class="txtRD">RECOMENDADO DEL DIA</p>
+                <p class="txtRD2" style="color: #E48D36">BARICHARA</p>
+                <div class="estrellas">
+                    <img src="Image/Estrella.svg">
+                    <img src="Image/Estrella.svg">
+                    <img src="Image/Estrella.svg">
+                    <img src="Image/Estrella.svg">
+                    <img src="Image/Estrella.svg">
+                </div>
+                <div class="check"><img src="Image/Check.svg"></div>
+                <div class="check2"><img src="Image/Check.svg"></div>
+                <!-- TEXTO RECOMENDADO DEL DIA -->
+                <section class="desc">
+                    <p class="text1">3 DIAS (2 NOCHES)</p>
+                    <p class="text2">DESAYUNO INCLUIDO</p>
+                    <p class="text3">Disfruta de un rico desayuno americano o buffet<br> ilimitado.</p>
+                    <p class="text4">CENA ROMANTICA</p>
+                    <p class="text5">Hemos seleccionado los mejores guías turísticos <br>para que recorras todo el
+                        centro histórico</p>
+                    <!-- PRECIO RECOMENDADO DEL DIA -->   
+                    <p class="text6">
+                        <span style="font-size: 0.938rem;">$</span>
+                        <span style="font-size: 2.5rem;">400.000</span>
+                        <span style="font-size: 0.938rem;" style="font-family: poppinsRegular;">c/u</span>
+                    </p>
+                    <!-- BOTON RECOMENDADO DEL DIA -->
+                    <a href="destinos.html"><div class="btnRecomendadoDia"><p class=txtbtn>RESERVA AHORA!</p></div></a>
+                </section>
+            </section>
+        </section>
+        
+    <!-- ::::: EXPLORA NUEVAS AVENTURAS ::::: -->
+        <article>
+            <section class="nuevasAventuras">
+                <div><img class="bannerAventuras" src="Image/Valle.jpg"></div>
+                <div class="cardAventuras">
+                    <!-- CARD 1 - EXPLORA NUEVAS AVENTURAS -->
+                    <section class="grupoCard1">
+                        <a href="destinos.html">
+                            <div class="cardP1NA"> 
+                                <div class="card1NA"> <img class="destinop1" src="Image/Cabañas.jpg"></div>
+                            </div>
+                            <div class="btnAventuras2">
+                                <p class=txtbtn>CABAÑAS / SAN ANDRES 
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE 250.000</span></p> 
+                            </div>
+                        </a>
+                    </section>
+                    <!-- CARD 2 - EXPLORA NUEVAS AVENTURAS -->
+                    <section class="grupoCard2">
+                        <a href="destinos.html">
+                            <div class="cardP2NA">
+                                    <div class="card2NA"><img class="destinop2" src="Image/Glamping.jpg"></div>
+                            </div>
+                            <div class="btnAventuras3">
+                                <p class=txtbtn>GLAMPING / BOGOTÁ
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE $150.000</span></p>
+                            </div>
+                        </a>
+                    </section>
+                    <!-- CARD 3 - EXPLORA NUEVAS AVENTURAS -->
+                    <section class="grupoCard3">
+                        <a href="destinos.html">
+                            <div class="cardP3NA">
+                                <div class="card3NA"><img class="destinop3" src="Image/bungalows.jpg"></div>
+                            </div>
+                            <div class="btnAventuras4">
+                                <p class=txtbtn>BUGALOWS / CARTAGENA
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE 550.000</span></p>
+                            </div>
+                        </a>
+                    </section>
+                </div>
+            </section>
+            <!-- TEXTO/BOTON - EXPLORA NUEVAS AVENTURAS -->
+            <section class="textAventuras">
+                <p><span class="txt1Aventuras">EXPLORA NUEVAS</span><br><span class="txt2Aventuras">AVENTURAS</span></p>
+                 <!-- BOTON - PRUEBA ALGO NUEVO -->
+                <a href="destinos.html">
+                    <div class="btnAventuras"><p class=txtbtn>PRUEBA ALGO NUEVO</p></div>
+                </a>
+            </section>
+        </article>
+
+    <!-- ::::: NUESTRA APP ::::: -->
+        <article class="App" style="position: relative; left: 0; top: 0px;">
+            <!-- FONDO DE LA SECCION -->
+            <img class="fondoApp" src="Image/Fondo.svg">
+            <!-- INFORMACION Y MOCKUP -->
+            <section class="cajaApp">
+                <!-- INFORMACION -->
+                <img class="btnStore" src="Image/btnStore.png">
+                <div class="cajaTxtApp">
+                    <p class="textApp"><span class="txtApp1">PRÓXIMAMENTE<br> NUESTRA <span class="txtApp1-1">APP</span></span></p><br>
+                    <p class="textApp2"><span class="txtApp2">SI ERES UNO DE LOS PRIMEROS,</span><br>
+                        <span class="txtApp3">PODRAS OBTENER <span class="txtApp1-2">10%</span> DE DESCUENTO </span><br>
+                        <span class="txtApp4">EN TU PRIMERA RESERVA</span>
+                        <br><br><span class="txtApp5">MUY PRONTO VALIDO EN:</span>
+                    </p>
+                </div>
+                <!-- MOCKUP -->
+                <img class="mockup" src="Image/Appmockup.png">
+            </section>
+        </article>
+    </main>
+
+<!-- ::::: FOOTER ::::: -->
+    <footer>
+        <div class="conocenos">
+            <p>Conócenos</p>
+            <ul class="listaConocenos">
+                <a href="404.html"><li>¿Qué es MiViaje.com?</li></a>
+                <a href="404.html"><li>Privacidad</li></a>
+                <a href="404.html"><li>Términos</li></a>
+                <a href="404.html"><li> Mapa del sitio</li></a>
+                <a href="404.html"><li> Datos de la empresa</li></a>
+            </ul>
+        </div>
+        <div class="dudas">
+            <p>¿Dudas?<br>Encuéntranos</p>
+            <ul class="listaDudas">
+                <a href="404.html"><li>Centro de ayuda</li></a>
+                <a href="404.html"><li>Reversión de Pagos</li></a>
+                <li>(xxx) xxx xxxx xx</li>
+                <li>info@miviaje.com</li>
+            </ul>
+        </div>
+        <h1 class=logoFooter><a title="logoFooter" href="Index.html">
+            <img id="logoFooter" src="Image/LogoBlanco.svg" alt="logoFooter"></a></h1>
+        <div class="redesSociales">
+            <a href="404.html"><img src="Image/Instagram.png" class="instagram"></a>
+            <a href="404.html"><img src="Image/Facebook.png" class="facebook"></a>
+            <a href="404.html"><img src="Image/Telegram.png" class="telegram"></a>
+            <a href="404.html"><img src="Image/Twitter.png" class="twitter"></a>
+        </div>
+        <p class="txtFinal">Copyright - Miviaje.com - 2022</p>
+    </footer>
+    <script src="script-index.js"></script>
+</body>
+</html>
