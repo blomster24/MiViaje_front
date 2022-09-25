@@ -19,24 +19,45 @@
                 <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
         <nav>
             <a href="index.html">Home</a>
-            <a href="destinos.html" style="color:#E48D36">Destinos</a>
-            <a href="mireserva.html">MiReserva</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="mireserva.html"  style="color:#E48D36">MiReserva</a>
             <a href="404.html">Contactenos</a>
         </nav>
     </header>
     <main>
-    </main>
+    <div id = "txt_inicial_mireserva_resultado"></div>
     <div class = "reserva">
         <div class="hoteleSeleccionado">
-            <div class ="cajaHotelSelec" id = "hotelSeleccionadoApi">
-            </div>
+            <div class ="cajaHotelSelec" id = "hotelSeleccionadoApi"></div>
         </div>
-        <div class = "formularioReserva2" id = "confirmacion_reserva">
-           
-
+        <div class = "formularioReserva" >
+             <!-- CREACIÓN DE FORMULARIO -->
+             <form onsubmit="obtenerInfo(event)"  id = "form_reserva_mireserva" >
+             
+        
+            </form>
         </div>
-
-    </div>    
+    </div>  
+     <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
+     <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
+        <div class="modal2">
+            <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
+            <p><span style="font-size: 14px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
+                    <span> REVISA TU FECHA DE CHECK OUT</span></p>
+            <img src="Image/verificacionFechas.svg">
+        </div>
+    </div>
+    <!-- MODAL NO SE ENCUENTRA EN EL SISTEMA --> 
+    <div id="openModal3" class="modalDialog2" >
+        <img class="logoBlanco_modal" src="Image/logoblanco copy.svg">
+        <div class="modal4">
+            <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+            <p><span style="font-size: 15px; font-weight: 200;">UPS! AL PARECER NO TIENES NINGUNA RESERVA</span>
+                <span class ="pregunta_modal3"> REVISA TU NÚMERO DE RESERVA O DOCUMENTO, <br>SI NO TIENES UNA RESERVA CORRE A REALIZAR UNA.</span></p>     
+            <img src="Image/ahorro.svg">
+        </div>
+    </div>
+</main>  
 </body>
 <footer>
     <div class="conocenos">
@@ -77,5 +98,5 @@
 
 
 </footer>
-<script src="script-confirmacion-reserva.js"> </script>
+<script src="script-mi-reerva-resultado.js"> </script>
 </html>

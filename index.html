@@ -23,7 +23,7 @@
             <nav>
                 <a href="index.html" style="color:#E48D36">Home</a>
                 <a href="destinos.html">Destinos</a>
-                <a href="404.html">MiReserva</a>
+                <a href="mireserva.html">MiReserva</a>
                 <a href="404.html">Contactenos</a>
                 </ul>
             </nav>
@@ -35,11 +35,11 @@
         <p class="txtBanner2"><a href="destinos.html">Destinos Populares</p></a>
     <!-- ::::: CARDS / BANNER ::::: -->
         <section class="cardpos">
-            <div class="cardP1"><a href="destinos.html">
+            <div class="cardP1" onclick="creacion()"><a href="bogota.html">
                     <div class="card1"><img class="destinop1" src="Image/bogota.jpg"></div>
                     <div class="txtCard1">
                         <h4><b>Viaja a Bogotá</b></h4>
-                        <p>Desde $50.000 la noche</p>
+                        <p>Desde $150.000 la noche</p>
                     </div></a>
             </div>
             <div class="cardP2"><a href="destinos.html">
@@ -79,6 +79,16 @@
                 <img src="Image/verificacionFechas.svg">
             </div>
         </div>
+        <!-- MODAL HABITACIONES MAS QUE HUESPEDES -->  
+        <div id="openModal3" class="modalDialog" >
+            <div class="modal3">
+                <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+                <input type="button" id = "btn_modal_cancelar" class="btn_modal_cancelar" value = "CANCELAR" onclick="javascript:cancelar()">
+                <p><span style="font-size: 15px; font-weight: 200;">EL NÚMERO DE HABITACIONES ES MAYOR QUE LOS HUÉSPEDES...</span>
+                    <span class ="pregunta_modal"> ¿SEGURO DESEAS RESERVAR ESA CANTIDAD DE HABITACIONES? SI NO RESERVA UNA CANTIDAD MENOR</span></p>     
+                <img src="Image/ahorro.svg">
+            </div>
+        </div>
         
     <!-- ::::: FORMULARIO RESERVA INDEX ::::: -->  
         <form id ="formReserva" class="formulario">
@@ -94,7 +104,7 @@
                             <option value="BOGOTA">BOGOTÁ</option>
                             <option value="CALI">CALÍ</option>
                             <option value="CARTAGENA">CARTAGENA</option>
-                            <option value="MDELLIN">MEDELLIN</option>
+                            <option value="MEDELLIN">MEDELLIN</option>
                             <option value="SAN ANDRES">SAN ANDRES</option>
                             <option value="SANTA MARTA">SANTA MARTA</option>
                             <option value="LETICIA">LETICIA</option>
@@ -125,20 +135,20 @@
                     <div class="datosHuespedes">
                         <p>Huespedes</p>
                         <select id ="numAdult" class="select2">
-                            <option value="opcion 0">1 Adulto</option>
-                            <option value="opcion 1" selected>2 Adultos</option>
-                            <option value="opcion 2">3 Adultos</option>
-                            <option value="opcion 3">4 Adultos</option>
+                            <option value="1">1 Adulto</option>
+                            <option value="2" selected>2 Adultos</option>
+                            <option value="3">3 Adultos</option>
+                            <option value="4">4 Adultos</option>
                         </select>
                     </div>
                     <!-- HABITACIONES -->
                     <div>
                         <img class="img3H" src="Image/icoHab.svg">
                         <select id ="numHab" class="select3" style="width: 80px;">
-                            <option value="opcion 0">1 hab</option>
-                            <option value="opcion 1">2 hab</option>
-                            <option value="opcion 2">3 hab</option>
-                            <option value="opcion 3">4 hab</option>
+                            <option value="1" selected>1 hab</option>
+                            <option value="2">2 hab</option>
+                            <option value="3">3 hab</option>
+                            <option value="4">4 hab</option>
                         </select>
                     </div>
                 </section>
@@ -164,10 +174,10 @@
                     <img src="Image/Estrella.svg">
                     <img src="Image/Estrella.svg">
                 </div>
-                <div class="check"><img src="Image/Check.svg"></div>
-                <div class="check2"><img src="Image/Check.svg"></div>
+                <div class="check_index"><img src="Image/Check.svg"></div>
+                <div class="check2_index"><img src="Image/Check.svg"></div>
                 <!-- TEXTO RECOMENDADO DEL DIA -->
-                <section class="desc">
+                <section class="desc_index">
                     <p class="text1">3 DIAS (2 NOCHES)</p>
                     <p class="text2">DESAYUNO INCLUIDO</p>
                     <p class="text3">Disfruta de un rico desayuno americano o buffet<br> ilimitado.</p>
@@ -207,7 +217,7 @@
                     <section class="grupoCard2">
                         <a href="destinos.html">
                             <div class="cardP2NA">
-                                    <div class="card2NA"><img class="destinop2" src="Image/Glamping.jpg"></div>
+                                    <div class="card2NA"><img class="destinop2" src="https://album.mediaset.es/eimg/10000/2020/08/04/clipping_blZKtQ_35b0.jpg"></div>
                             </div>
                             <div class="btnAventuras3">
                                 <p class=txtbtn>GLAMPING / BOGOTÁ

@@ -4,48 +4,6 @@ select.addEventListener('change', function sel(event) {
     console.log(event.target.value)
 })
 
-// Condicional para formulario de busqueda
-function funcionBuscar22() {
-    // Validando que las fechas del checkOut no sea antes del checkIN
-    if (document.getElementById('fechaIN').value > document.getElementById('fechaOut').value) {
-        mostrarModalFechas()
-    } else {
-        if (document.getElementById('ciudad').value == "BARRANQUILLA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "BARICHARA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "BOGOTA") {
-            document.location.href = "bogota.html";
-        } else if (document.getElementById('ciudad').value == "CALI") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "CARTAGENA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "LETICIA") {
-            document.location.href = "destinos.html", true;
-        } else {
-            mostrarModalDestino() // Modal seleccionar Destino
-        }
-        passInformacion() //Ejecutamos la funcion de guardar información para luego utilizarla en los otros html
-    }
-    // Validando que el numero de habitaciones sea menor o igual al numero de huespedes
-    let result = false;
-    if (document.getElementById('numHab').value > document.getElementById('numAdult').value) {
-        result = window.confirm("El número de habitaciones es mayor al número de huespedes,¿Esta seguro que desea reservar ese numero de habitaciones?")
-        alert(result)
-        if (result == false) {
-            alert("Entonces cambie las habitaciones");
-        
-
-        }
-    }
-};
-
-
-
 // Funcion para guardar y pasar información de un html a otro
 function passInformacion() {
     let fechaIN = document.getElementById('fechaIN').value;
@@ -86,6 +44,7 @@ function clearStorage() {
 function ejecutarAlCargarPagina() {
     verificarFechaIN();
     clearStorage();
+    vs() 
 }
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -96,17 +55,28 @@ function mostrarModalDestino() {
     document.getElementById('openModal').style.display = 'block';
 }
 
-function mostrarModalFechas() {
-    document.getElementById('openModal2').style.display = 'block';
-}
-
 function CerrarModal() {
     document.getElementById('openModal').style.display = 'none';
+}
+
+function mostrarModalFechas() {
+    document.getElementById('openModal2').style.display = 'initial';
 }
 
 function CerrarModal2() {
     document.getElementById('openModal2').style.display = 'none';
 }
+
+function mostrarModalHabitaciones() {
+    document.getElementById('openModal3').style.display = 'block';
+    vs() 
+}
+
+function CerrarModal3() {
+    document.getElementById('openModal3').style.display = 'none';
+}
+
+//:::::: BANDERA ::::::::
 
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -115,46 +85,82 @@ function CerrarModal2() {
 window.onload = ejecutarAlCargarPagina;
 CerrarModal()
 CerrarModal2()
+let decision = ""
+function aceptar() {
+    decision = true
+    localStorage.setItem("decision", decision)
+    CerrarModal3()
+    window.location.href = "bogota.html", true;
+    localStorage.removeItem('HUEvsHAB');
+    localStorage.removeItem('decision');
+    
+    
+}
+function cancelar() {
+    decision = false
+    localStorage.setItem("decision", decision)
+    alert("Entonces cambie las habitaciones");
+    CerrarModal3()
+    window.location.href = "index.html"
+}
+
+
+function vs(){
+    if(document.getElementById("numAdult").value >= document.getElementById("numHab").value){
+        let HueFlag = 1;
+        localStorage.setItem("HUEvsHAB", HueFlag)
+    }else{
+        let HueFlag = 2;
+        localStorage.setItem("HUEvsHAB", HueFlag)
+        
+    } 
+}
+
+function creacion(){
+    let n = 1
+    localStorage.setItem("numeroAdultos",n)
+    localStorage.setItem("numeroHabitaciones",n)
+    let fechaHoy = new Date().toISOString().slice(0, 10)
+    localStorage.setItem("fechaCheckIn",fechaHoy)
+    localStorage.setItem("fechaCheckOut",fechaHoy)
+    let ciudad = "BOGOTA"
+    localStorage.setItem("ciudadSeleccion", ciudad)
+}
 
 function funcionBuscar() {
-
     // Validando que las fechas del checkOut no sea antes del checkIN
-    if (document.getElementById('fechaIN').value > document.getElementById('fechaOut').value) {
-        mostrarModalFechas()
+    if (document.getElementById('ciudad').value == "BARRANQUILLA") {
+        document.location.href = "bogota.html", true;
+    } else if (document.getElementById('ciudad').value == "BARICHARA") {
+         document.location.href = "bogota.html", true;
+    } else if (document.getElementById('ciudad').value == "BOGOTA") {
+        if (document.getElementById('fechaIN').value > document.getElementById('fechaOut').value) {
+            mostrarModalFechas()
+            }else if(document.getElementById('numHab').value > document.getElementById('numAdult').value){
+                mostrarModalHabitaciones()  
+            }else if(localStorage.getItem("HUEvsHAB") == 1 ){
+                    window.location.href = "bogota.html", true;
+            } 
+    } else if (document.getElementById('ciudad').value == "CALI") {
+        document.location.href = "destinos.html", true;
+    } else if (document.getElementById('ciudad').value == "CARTAGENA") {
+        if (document.getElementById('fechaIN').value > document.getElementById('fechaOut').value) {
+            mostrarModalFechas()
+            }else if(document.getElementById('numHab').value > document.getElementById('numAdult').value){
+                mostrarModalHabitaciones()  
+            }else if(localStorage.getItem("HUEvsHAB") == 1 ){
+                    window.location.href = "bogota.html", true;
+            } 
+    } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
+        document.location.href = "bogota.html", true;
+    } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
+        document.location.href = "bogota.html", true;
+    } else if (document.getElementById('ciudad').value == "LETICIA") {
+        document.location.href = "bogota.html", true;
     } else {
-        if (document.getElementById('ciudad').value == "BARRANQUILLA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "BARICHARA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "BOGOTA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "CALI") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "CARTAGENA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
-            document.location.href = "destinos.html", true;
-        } else if (document.getElementById('ciudad').value == "LETICIA") {
-            document.location.href = "destinos.html", true;
-        } else {
-            mostrarModalDestino() // Modal seleccionar Destino
-        }
-        passInformacion() //Ejecutamos la funcion de guardar información para luego utilizarla en los otros html
+        mostrarModalDestino() // Modal seleccionar Destino
     }
-    // Validando que el numero de habitaciones sea menor o igual al numero de huespedes
-    let result;
-    if (document.getElementById('numHab').value > document.getElementById('numAdult').value) {
-        result = window.confirm("El número de habitaciones es mayor al número de huespedes,¿Esta seguro que desea reservar ese numero de habitaciones?")
-        alert(result)
-        if (result == false) {
-            alert("Entonces cambie las habitaciones");
-           
-
-
-        }
-
-
-    }
+    passInformacion() //Ejecutamos la funcion de guardar información para luego utilizarla en los otros html
 }
+    
+

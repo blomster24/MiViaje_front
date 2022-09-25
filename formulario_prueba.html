@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MiViaje.com</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="only screen and (max-width: 1200px)" href="styles/style.css">
+    <link rel="stylesheet" media="only screen and (max-width: 940px)" href="styles/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="headeAzul">
+        <h1 class="logoblanco"><a title="logoFooter" href="index.html">
+                <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="destinos.html">Destinos</a>
+            <a href="mireserva.html"  style="color:#E48D36">MiReserva</a>
+            <a href="404.html">Contactenos</a>
+        </nav>
+    </header>
+    <main>
+    <div id = "txt_inicial_mireserva_resultado">
+       
+    </div>
+    
+    <div class = "reserva">
+        <div class="hoteleSeleccionado"> 
+            <div class ="cajaHotelSelec" id = "hotelSeleccionadoApi"></div>
+        </div>
+            <div class = "formularioReserva2" >
+             <!-- CREACIÓN DE FORMULARIO -->
+                <form  id = "form_reserva_mireserva" class = "form_mireform_mireserva_selec2" >
+                    
+                    <div class ="box_form_mireserva_selec2">
+                        <p>Check In</p>
+                        <input type="date" value ="${localStorage.getItem("fechaCheckIn")}">
+                    </div>
+                    <div class ="box_form_mireserva_selec2">
+                        <p>Check Out</p>
+                        <input type="date" value ="${localStorage.getItem("fechaCheckOut")}">
+
+                    </div>
+                    <div class ="box_form_mireserva_selec2">
+                        <p>Huespedes</p>
+                        <select id ="cantidadPersonas">
+                            <option value ="1">1 Adulto</option>
+                            <option value ="2" selected>2 Adultos</option>
+                            <option value ="3">3 Adultos</option>
+                            <option value ="4">4 Adultos</option>
+                        </select>
+
+                    </div>
+                    <div class ="box_form_mireserva_selec2">
+                        <p>Habitaciones</p>
+                        <select class ="numhabiciones2" id ="numhabiciones">
+                            <option value ="1">1 Habitacion</option>
+                            <option value ="2">2 Habitaciones</option>
+                            <option value ="3">3 Habitaciones</option>
+                            <option value ="4">4 Habitaciones</option>
+                        </select>
+                    </div>
+                </form>
+                <div class = "txt_form_mireserva">
+                    <p class = "advertencia_mireserva"> <span style = "font-size: 20px;"><span style ="color:#E48D36;">HOLA</span> </span>
+                    <br>SI DESEAS HOSPEDARTE EN OTRO HOTEL, CANCELA ESTA RESERVA Y REALIZA UNA NUEVA CON EL HOTEL QUE DESEES.<br> </p>
+                </div> 
+                <form>
+                    <div class ="datos_personales">
+                        <div class = caja_mi_reserva3> 
+                            <label for = "nombrePersona" >NOMBRE</label>
+                            <input type = "text" id = "nombrePersona" name = "nombrePersona"  required>
+                        </div>
+                        <div class = id_mi_reserva> 
+                            <label for = "idReserva"></label>
+                            <input type = "text" id = "idReserva" name = "idReserva" class ="inputForm" required>
+                        </div>
+                        <div class = id_mi_reserva> 
+                            <label for = "token"></label>
+                            <input type = "text" id = "token" name = "token" class ="inputForm" required>
+                        </div>
+                        <div class = id_mi_reserva> 
+                            <label for = "fkHotel"></label>
+                            <input type = "text" id = "fkHotel" name = "fkHotel" class ="inputForm" required>
+                        </div>
+                        <div class = caja_mi_reserva3> 
+                            <label for = "apellidoPersona">APELLIDO</label>
+                            <input type = "text" id = "apellidoPersona" name = "apellidoPersona" class ="inputForm" required>
+                        </div>
+                        <div class = caja_mi_reserva3> 
+                            <label for = "correoPersona">CORREO ELECTRONICO</label>
+                            <input type = "email" id = "correoPersona" name = "correoPersona" class ="inputForm" required
+                            placeholder="email@domino.com">
+                        </div>
+                        <div class = caja_mi_reserva3> 
+                            <label for = "telefonoPersona">TELÉFONO</label>
+                            <input type = "tel" id = "telefonoPersona" name = "telefonoPersona" class ="inputForm" required
+                            placeholder="(xx) xxx xxx xxxx" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                            </div>                                
+                        <div class = caja_mi_reserva3> 
+                            <label for = "tipoDocumento">TIPO DE DOCUMENTO</label>
+                            <select class ="inputForm" name = "tipoDocumento" id = "tipoDocumento" required >
+                                <option value="CC">Cedula de Ciudadania</option>
+                                <option value="CE">Cedula de Extranjeria</option>
+                                <option value="PA">Pasaporte</option>
+                            </select>
+                        </div>
+                        <div class = caja_mi_reserva3> 
+                            <label for = "numeroDocumento">NÚMERO DOCUMENTO</label>
+                            <input type ="text" id ="numeroDocumento" name = "numeroDocumento" class ="inputForm" required/>
+                        </div>
+                    </div>    
+                </form>      
+                <section class = "botones_actualiza_elimnar">
+                    <!-- BOTONES -->
+                    <input type="submit" value="ACTUALIZAR RESERVA" class="boton_actualizar ">
+                </section>
+                
+            </div>
+    </div>  
+</main>  
+</body>
+<footer>
+    <div class="conocenos">
+        <p>Conócenos</p>
+        <ul class="listaConocenos">
+            <a href="404.html"><li>¿Qué es MiViaje.com?</li></a> 
+            <a href="404.html"><li>Privacidad</li></a> 
+            <a href="404.html"><li>Términos</li></a> 
+            <a href="404.html"> <li> Mapa del sitio</li></a> 
+            <a href="404.html"><li> Datos de la empresa</li></a> 
+        </ul>
+
+    </div>
+    <div class="dudas">
+        <p>¿Dudas?<br>
+            Encuéntranos</p>
+            <ul class="listaDudas">
+                <a href="404.html"><li>Centro de ayuda</li></a>
+                <a href="404.html"><li>Reversión de Pagos</li></a>
+                <li>(xxx) xxx xxxx xx</li>
+                <li>info@miviaje.com</li>
+            </ul>
+
+    </div>
+
+    <h1 class=logoFooter><a title="logoFooter" href="Index.html">
+            <img id="logoFooter" src="Image/LogoBlanco.svg" alt="logoFooter"></a></h1>
+    <div class="redesSociales">
+
+        <a href="404.html"><img src="Image/Instagram.png" class="instagram"></a>
+        <a href="404.html"><img src="Image/Facebook.png" class="facebook"></a>
+        <a href="404.html"><img src="Image/Telegram.png" class="telegram"></a>
+        <a href="404.html"><img src="Image/Twitter.png" class="twitter"></a>
+
+
+    </div>
+    <p class="txtFinal">Copyright - Miviaje.com - 2022</p>
+
+
+</footer>
+<script src=""> </script>
+</html>

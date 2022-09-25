@@ -1,5 +1,34 @@
 // document.getElementById('infoIN').value = localStorage.getItem("fechaCheckIn");
-
+let adulnum_seleccionado = ""
+    switch (localStorage.getItem("numeroAdultos")) {
+        case '1':
+            adulnum_seleccionado = "1 ADULTO"
+            break;
+        case '2':
+            adulnum_seleccionado = "2 ADULTOS"
+            break;
+        case '3':
+            adulnum_seleccionado = "3 ADULTOS"
+            break;
+        case '4':
+            adulnum_seleccionado = "4 ADULTOS"
+            break;
+    }
+let habnum_seleccionado = ""   
+    switch (localStorage.getItem("numeroHabitaciones")) {
+        case '1':
+            habnum_seleccionado = "1 HABITACION"
+            break;
+        case '2':
+            habnum_seleccionado = "2 HABITACIONES"
+            break;
+        case '3':
+            habnum_seleccionado = "3 HABITACIONES"
+            break;
+        case '4':
+            habnum_seleccionado = "4 HABITACIONES"
+            break; 
+           }
 
 async function obtenerHoteles(url) {
     const respuesta = await fetch(url)
@@ -7,8 +36,9 @@ async function obtenerHoteles(url) {
     return hoteles
 }
 
-
+const fechaHoy_3 = new Date().toISOString().slice(0, 10)
 function hoteles_disponibles(hoteles) {
+    
     const cardHotelDisponible = document.getElementById('hoteldisponible')
     let section = "<div>"
     for (let i = 0; i < hoteles.length; i++) {
@@ -19,58 +49,58 @@ function hoteles_disponibles(hoteles) {
                     <section class="informacion">
                         <div class="cajaText">
                             <p class="txtHRC">${h.nombreHotel}</p>
-                            <div class="check"><img src="Image/Check.svg"></div>
-                            <div class="check2"><img src="Image/Check.svg"></div>
-                            <div class="desc">
-                                <p class="text2" style="color: black;">Beneficios de miviaje.com</p>
-                                <p class="text3">Cancelacion Gratuita</p>
-                                <p class="text5">Pago en efectivo en el hotel</p>
-                                <div class="precio">
-                                    <p class = "txtprecio"><span style ="font-size:20px; font-weight: 400;">$</span>${(h.costoHabitacion*1).toLocaleString('de-DE')} <span class = "txtprecio2" >por noche</span></p>
+                            <div class ="beneficios_hotel">
+                                <div class="check"><img src="Image/Check.svg"></div>
+                                <div class="check2"><img src="Image/Check.svg"></div>
+                                <div class="desc">
+                                    <p class="text2">Beneficios de MiViaje.com</p>
+                                    <p class="text3">Cancelacion Gratuita</p>
+                                    <p class="text5">Pago en efectivo en el hotel</p>
+                                    <div class="precio">
+                                        <p class = "txtprecio"><span style ="font-size:20px; font-weight: 400;">$</span>${(h.costoHabitacion * 1).toLocaleString('de-DE')} <span class = "txtprecio2" >por noche</span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <section class="informacion">
-                        <section class="checkIn">
-                            <div class="imgCalendarioIN"><img src="Image/Vectorcalendario.svg"></div>
-                            <div class="datosCheckIN">
-                                <p>Check In</p>
-                                <input id = "fechaINCards" class="cajaIn" type="date" max="2023-02-22" style="width: 100px;"
-                                    onkeydown="return false" value ="${document.getElementById('infoIN').value}">
-                            </div>
-                        </section>
-                        <section class="checkOut">
-                            <div class="imgCalendarioOut"><img src="Image/Vectorcalendario.svg"></div>
-                            <div class="datosCheckOut">
-                                <p>Check Out</p>
-                                <input class="cajaOut" type="date" max="2023-02-22" style="width: 100px;"
-                                    onkeydown="return false" value ="${document.getElementById('infoOUT').value}">
-                            </div>
-                        </section>
-                        <section class="huespedes">
-                            <div class="imgHuespedes"><img src="Image/icoHuesped.svg "></div>
-                            <div class="datosHuespedes" id ="rrr">
-                                <p>Huespedes</p>
-                                <select id="idr" class="select2" value = "opcion 2">
-                                    <option value="opcion 0">1 Adulto</option>
-                                    <option value="opcion 1">2 Adultos</option>
-                                    <option value="opcion 2">3 Adultos</option>
-                                    <option value="opcion 3">4 Adultos</option>
-                                </select>
-                            </div>
-                            <img class="img3" src="Image/icoHab.svg">
-                            <div>
-                                <select class="select3" style="width: 80px;" value = "${localStorage.getItem("numeroHabitaciones")}">
-                                    <option value="opcion 0">1 hab</option>
-                                    <option value="opcion 1">2 hab</option>
-                                    <option value="opcion 2">3 hab</option>
-                                    <option value="opcion 3">4 hab</option>
-                                </select>
-                            </div>
-                        </section>
-                        <button onclick = 'sendInfo(${JSON.stringify(h)})'>RESERVAR AHORA</button>
+                    
+                    <div class = "division_card"></div>
+                    <section class="informacion2">
+                    
+                        <div class = fechas_seleccionadas>
+                            <section class="checkIn">  
+                                <div class="datosCheckIN">
+                                    <p style ="color: #E48D36;">Check In</p>
+                                    <p class = "fecha_destino_selecionado" style ="font-weight: 800;">${localStorage.getItem("fechaCheckIn")}</p>
+                                </div>
+                            </section>
+                            <section class="checkIn">
+                                <div  style ="margin-top: 10px;" class="datosCheckIN">
+                                    <p style ="color: #E48D36;" >Huespedes</p>
+                                    <p class = "fecha_destino_selecionado" style ="font-weight: 800;">${adulnum_seleccionado}</p>
+                                </div>  
+                            </section>
+                        </div>
+                        <div class = fechas_seleccionadas2>
+                            <section class="checkIn">  
+                                <div class="datosCheckIN">
+                                    <p style ="color: #E48D36;">Check Out </p>
+                                    <p class = "fecha_destino_selecionado" style ="font-weight: 800;" >${localStorage.getItem("fechaCheckOut")}</p>
+                                </div>
+                            </section>
+                            <section class="checkIn">
+                                <div  style ="margin-top: 0px;" class="datosCheckIN">
+                                    <p style ="color: #E48D36;">Habitaciones </p>
+                                    <p class = "fecha_destino_selecionado" style ="font-weight: 800;" >${habnum_seleccionado}</p>
+                                </div>  
+                            </section>
+                           
+                        </div> 
+                             
+                        <button onclick = 'sendInfo(${JSON.stringify(h)})'>RESERVAR AHORA</button> 
                     </section>
+                    
+                   
                 </section>
                 <div class="caja2">
                     <img src="${h.imagen}">
@@ -80,23 +110,88 @@ function hoteles_disponibles(hoteles) {
     }
     section += "</div>"
     cardHotelDisponible.innerHTML += section
+    rellarFormulario()
+
 }
 
-function sendInfo(hotel){
+// ::::::::  ITERACIONES PARA CONSUMO DE API :::::::
+function rellarFormulario() {
+
+    // CONDICIONAL PARA SELEC -> DESTINO, SI SE ENTRA DIRECTAMENTE ESCOGER UN DESTINO SIN UTILIZAR FORMULARIO
+    if (window.localStorage.getItem('ciudadSeleccion') != undefined) {
+        document.getElementById('ciudad').value = localStorage.getItem("ciudadSeleccion")
+    }else{
+        document.getElementById('ciudad').value = localStorage.getItem("ciudadSeleccion")
+    }   
+
+    // ::::: CONDICIONAL PARA RELLENAR HUESPDES SI ESTA DEFINIDO O NO ::::::
+
+    if (window.localStorage.getItem('numeroAdultos') != undefined) {
+        // Iteración para rellenar el numero de huespedes 
+        let elemNumHues = document.getElementsByClassName("select2")
+        for (let y = 0; y < elemNumHues.length; ++y) {
+            elemNumHues[y].value = localStorage.getItem("numeroAdultos")
+        }
+    } else {
+        let elemNumHues = document.getElementsByClassName("select2")
+        for (let y = 0; y < elemNumHues.length; ++y) {
+            elemNumHues[y].value = "opcion 1"
+        }
+    }
+
+    // ::::: CONDICIONAL PARA RELLENAR HABITACIONES SI ESTA DEFINIDO O NO ::::::
+
+    if (window.localStorage.getItem('numeroHabitaciones') != undefined) {
+        let elemNumHab = document.getElementsByClassName("select3")
+        for (let y = 0; y < elemNumHab.length; ++y) {
+            elemNumHab[y].value = localStorage.getItem("numeroHabitaciones")
+        }
+    }else{
+        let elemNumHab = document.getElementsByClassName("select3")
+        for (let y = 0; y < elemNumHab.length; ++y) {
+            elemNumHab[y].value = "opcion 0"
+        }
+    }
+
+    // ::::: CONDICIONAL PARA RELLENAR FECHAS SI ESTA NDEFINIDAS O NO ::::::
+    const fechaHoy_2 = new Date().toISOString().slice(0, 10)
+
+    // Condicional fechas CheckIN, si no hay fechas guardadas en el local storage entonces utilice por defecto la fecha de hoy
+    if (window.localStorage.getItem('fechaCheckIn') == undefined || document.getElementsByClassName('fechaINCards') == undefined) {
+        document.getElementById('infoIN').value = fechaHoy_2; // Rellenando formulario principal
+    }else{
+        document.getElementById('infoIN').value =localStorage.getItem("fechaCheckIn"); 
+    }
+
+    // Condicional fechas CheckOUT, si no hay fechas guardadas en el local storage entonces utilice por defecto la fecha de hoy
+    if (window.localStorage.getItem('fechaCheckOut') == undefined || document.getElementsByClassName('cajaOut') == undefined) {
+
+        document.getElementById('infoOUT').value = fechaHoy_2;// Rellenando formulario principal
+
+    }else{
+        document.getElementById('infoOUT').value =localStorage.getItem("fechaCheckOut");    
+    }
+}
+
+function sendInfo(hotel) {
     //window.location.href= `form-reserva.html?idhotel=${hotel.idHoteles}&img=${hotel.imagen}&p=${hotel.costoHabitacion}`
     let id_H = hotel.idHotel
-    localStorage.setItem("id_hotel_sc",id_H)
+    localStorage.setItem("id_hotel_sc", id_H)
     let precio_H = hotel.costoHabitacion
-    localStorage.setItem("precioHab",precio_H)
+    localStorage.setItem("precioHab", precio_H)
     let nombre_H = hotel.nombreHotel
     localStorage.setItem("namehotel", nombre_H)
     let img_H = hotel.imagen
     localStorage.setItem("imgHotelDS", img_H)
-    window.location.href= `form-reserva.html?hotel=${JSON.stringify(hotel)}`
-
+    window.location.href = `form-reserva.html`
+    //`form-reserva.html?hotel=${JSON.stringify(hotel)}`
 }
+let ciudad = localStorage.getItem("ciudadSeleccion")
+
 async function main() {
-    const url = "http://localhost:8080/api/hoteles/ciudad/Bogotá"
+    let url = "http://localhost:8080/api/hoteles/ciudad/"
+    url += ciudad
+    console.log(url)
     const hoteles = await obtenerHoteles(url)
     hoteles_disponibles(hoteles)
 }
@@ -104,61 +199,10 @@ async function main() {
 // Funcion para iniciar funciones que necesitemos al iniciar la pagina
 function ejecutarAlCargarPagina() {
     verificarFechaIN()
-   
 }
-
 
 window.onload = ejecutarAlCargarPagina;
 main()
-
-// Iteraciones para consumo de API
-
-// Iteración para rellenar la fecha de Cehck In
-let elemIN = document.getElementsByClassName('cajaIn');
-for (let n = 0; n < elemIN.length; ++n) {
-    elemIN[n].value = localStorage.getItem("fechaCheckIn");
-}
-
-// Iteración para rellenar la fecha de Check Out
-let elemOUT = document.getElementsByClassName('cajaOut');
-let x;
-for (x = 0; x < elemOUT.length; ++x) {
-    elemOUT[x].value = localStorage.getItem("fechaCheckOut");
-}
-
-// Condicional para selec -> Adultos, si se entra directamente escoger un destino sin utilizar formulario
-if (window.localStorage.getItem('numeroAdultos') != undefined) {
-    // Iteración para rellenar el numero de huespedes 
-    document.getElementById('numAdult').value = localStorage.getItem("numeroAdultos");
-}
-
-
-
-if (window.localStorage.getItem('numeroHabitaciones') != undefined) {
-    // Iteración para rellenar el numero de huespedes 
-    let elemNumAdultos = document.getElementsByClassName('select3');
-    for (let a = 0; a < elemNumAdultos.length; ++a) {
-        elemNumAdultos[a].value = localStorage.getItem("numeroHabitaciones")
-    }
-}
-
-
-// Condicional para selec -> Destino, si se entra directamente escoger un destino sin utilizar formulario
-if (window.localStorage.getItem('ciudadSeleccion') != undefined) {
-    document.getElementById('ciudad').value = localStorage.getItem("ciudadSeleccion")
-}
-
-// Condicional fechas CheckIN, si no hay fechas guardadas en el local storage entonces utilice por defecto la fecha de hoy
-if (window.localStorage.getItem('fechaCheckIn') == undefined) {
-    let fechaHoy = new Date().toISOString().slice(0, 10)
-    document.getElementById('infoIN').value = fechaHoy;
-}
-
-// Condicional fechas CheckOUT, si no hay fechas guardadas en el local storage entonces utilice por defecto la fecha de hoy
-if (window.localStorage.getItem('fechaCheckOut') == undefined) {
-    let fechaHoy = new Date().toISOString().slice(0, 10)
-    document.getElementById('infoOUT').value = fechaHoy;
-}
 
 // Funcion para establcer la fecha del Check In y no permitir escoger una fecha anterior
 function verificarFechaIN() {
@@ -182,21 +226,23 @@ function funcionBuscar() {
         mostrarModalFechas()
     } else {
         if (document.getElementById('ciudad').value == "BARRANQUILLA") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "BARICHARA") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "BOGOTA") {
             document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "CALI") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "CARTAGENA") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
+        } else if (document.getElementById('ciudad').value == "MEDELLIN") {
+            document.location.href = "bogota.html", true;
         } else if (document.getElementById('ciudad').value == "LETICIA") {
-            document.location.href = "destinos.html", true;
+            document.location.href = "bogota.html", true;
         } else {
             mostrarModalDestino() // Modal seleccionar Destino
         }
@@ -221,9 +267,23 @@ function funcionBuscar() {
         localStorage.setItem("ciudadSeleccion", destinoSelec); // Guardando en el localStorage la ciudad
         let adultosSelec = document.getElementById('numAdult').value;
         localStorage.setItem("numeroAdultos", adultosSelec); // Guardando en el localStorage la num Huespedes
-        let habSelec = document.getElementById('numHab').value;
+        let habSelec = document.getElementById('numHabiDS').value;
         localStorage.setItem("numeroHabitaciones", habSelec);
         return true;
     }
-    
+
 }
+
+
+if(localStorage.getItem("numeroAdultos") == undefined){
+    location.href = "index.html"
+}
+
+function clearStorage() {
+    if (localStorage.getItem("flag") == "true") {
+        localStorage.clear();
+        window.location.href = "destinos.html"
+    }
+} 
+clearStorage();
+

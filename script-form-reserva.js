@@ -37,6 +37,7 @@ function obtenerInfo(evt) {
         fechaInicial: form.fechaInicial.value,
         fechaFinal: form.fechaFinal.value,
         cantidadPersonas:form.cantidadPersonas.value,
+        cantidadHabitaciones:form.cantidadHabitaciones.value,
         nombrePersona: form.nombrePersona.value,
         apellidoPersona: form.apellidoPersona.value,
         correoPersona: form.correoPersona.value,
@@ -46,6 +47,7 @@ function obtenerInfo(evt) {
         fkHotel:form.fkHotel.value
         
     }
+    console.log(reserva)
     save_name()
     crearReserva(reserva)
 
@@ -79,8 +81,7 @@ async function crearReserva(reserva) {
         body: JSON.stringify(reserva)
     })
     const text = await respues.text()
-    alert(text)
-    window.location.href ="confirmacion-reserva.html"
+    window.location.replace("confirmacion-reserva.html")
 }
 
 
@@ -113,10 +114,11 @@ function get_idhotel(){
         <input type ="text" id = "fechaFinal" name ="fechaFinal" value ="${localStorage.getItem("fechaCheckOut")}">
         <label for = "cantidadPersonas">idhotel</label>
         <input type ="text" id = "cantidadPersonas" name ="cantidadPersonas" value ="${localStorage.getItem("numeroAdultos")}">
+        <label for = "cantidadHabitaciones">idhotel</label>
+        <input type ="text" id = "cantidadHabitaciones" name ="cantidadHabitaciones" value ="${localStorage.getItem("numeroHabitaciones")}">
         `
     div += "</div>"
     complemento_reserva.innerHTML += div
-    console.log(localStorage.getItem("id_hotel_sc"))
 }
 
 
@@ -177,7 +179,15 @@ function numeroNoches(){
     return diferenciaDia
     
 }
+let flag = true
+localStorage.setItem("flag",flag)
 
+function devolver(){
+    if(localStorage.getItem("fechaCheckOut") == undefined){
+        window.location.href = "destinos.html"
+    }
+}
+devolver()
 function txtnoche(){
     let txt = "noches"
     if(numeroNoches() == 1){
@@ -188,9 +198,6 @@ function txtnoche(){
 txtnoche()
 
 
-function confirmacion_reserva(){
-    
-}
 
 
 
