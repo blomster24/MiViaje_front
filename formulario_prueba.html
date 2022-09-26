@@ -25,105 +25,27 @@
         </nav>
     </header>
     <main>
-    <div id = "txt_inicial_mireserva_resultado">
-       
-    </div>
     
-    <div class = "reserva">
-        <div class="hoteleSeleccionado"> 
-            <div class ="cajaHotelSelec" id = "hotelSeleccionadoApi"></div>
-        </div>
-            <div class = "formularioReserva2" >
-             <!-- CREACIÓN DE FORMULARIO -->
-                <form  id = "form_reserva_mireserva" class = "form_mireform_mireserva_selec2" >
-                    
-                    <div class ="box_form_mireserva_selec2">
-                        <p>Check In</p>
-                        <input type="date" value ="${localStorage.getItem("fechaCheckIn")}">
-                    </div>
-                    <div class ="box_form_mireserva_selec2">
-                        <p>Check Out</p>
-                        <input type="date" value ="${localStorage.getItem("fechaCheckOut")}">
 
-                    </div>
-                    <div class ="box_form_mireserva_selec2">
-                        <p>Huespedes</p>
-                        <select id ="cantidadPersonas">
-                            <option value ="1">1 Adulto</option>
-                            <option value ="2" selected>2 Adultos</option>
-                            <option value ="3">3 Adultos</option>
-                            <option value ="4">4 Adultos</option>
-                        </select>
+        <div id="openModal5" class="modalDialog2" >
+            <img class="logoBlanco_modal5" src="Image/logoblanco copy.svg">
+            <div class="modal5">
+                <a href="index.html"><img src="Image/cancelacion_reserva.svg"></a>
+                <div class ="txt_modal_eliminacion_reserva">
+                    <p class ="ups_cancelacion_reserva">!UPS!</p> 
+                    <p class = "nombre_persona_cancelacion_reserva"> NOMBRE PERSONA <!-- ${(localStorage.getItem("nombre").toUpperCase())} ${(localStorage.getItem("apellido").toUpperCase())} --></p>
+                    <p class = "nombre_persona_cancelacion_reserva">TU RESERVA HA SIDO <br>CANCELADA<span style="font-size: 17px;">*</span></p>
+                    <p class ="txt1_eliminada" style="margin-top:20px ;">LAMENTAMOS QUE HAYAS CANCELADO TU RESERVA,</p> 
+                    <p class ="txt1_eliminada" style="font-weight: 600; margin-top:5px;">ESPERAMOS VERTE PRONTO DE NUEVO</p>
+                    <p class ="txt3_eliminada" style="font-style:italic ;">*Después de cancelada la reserva no se puede modificar, si deseas obtener la misma reserva te invitamos a que la realices de nuevo en las fechas deseadas.</p>
 
-                    </div>
-                    <div class ="box_form_mireserva_selec2">
-                        <p>Habitaciones</p>
-                        <select class ="numhabiciones2" id ="numhabiciones">
-                            <option value ="1">1 Habitacion</option>
-                            <option value ="2">2 Habitaciones</option>
-                            <option value ="3">3 Habitaciones</option>
-                            <option value ="4">4 Habitaciones</option>
-                        </select>
-                    </div>
-                </form>
-                <div class = "txt_form_mireserva">
-                    <p class = "advertencia_mireserva"> <span style = "font-size: 20px;"><span style ="color:#E48D36;">HOLA</span> </span>
-                    <br>SI DESEAS HOSPEDARTE EN OTRO HOTEL, CANCELA ESTA RESERVA Y REALIZA UNA NUEVA CON EL HOTEL QUE DESEES.<br> </p>
-                </div> 
-                <form>
-                    <div class ="datos_personales">
-                        <div class = caja_mi_reserva3> 
-                            <label for = "nombrePersona" >NOMBRE</label>
-                            <input type = "text" id = "nombrePersona" name = "nombrePersona"  required>
-                        </div>
-                        <div class = id_mi_reserva> 
-                            <label for = "idReserva"></label>
-                            <input type = "text" id = "idReserva" name = "idReserva" class ="inputForm" required>
-                        </div>
-                        <div class = id_mi_reserva> 
-                            <label for = "token"></label>
-                            <input type = "text" id = "token" name = "token" class ="inputForm" required>
-                        </div>
-                        <div class = id_mi_reserva> 
-                            <label for = "fkHotel"></label>
-                            <input type = "text" id = "fkHotel" name = "fkHotel" class ="inputForm" required>
-                        </div>
-                        <div class = caja_mi_reserva3> 
-                            <label for = "apellidoPersona">APELLIDO</label>
-                            <input type = "text" id = "apellidoPersona" name = "apellidoPersona" class ="inputForm" required>
-                        </div>
-                        <div class = caja_mi_reserva3> 
-                            <label for = "correoPersona">CORREO ELECTRONICO</label>
-                            <input type = "email" id = "correoPersona" name = "correoPersona" class ="inputForm" required
-                            placeholder="email@domino.com">
-                        </div>
-                        <div class = caja_mi_reserva3> 
-                            <label for = "telefonoPersona">TELÉFONO</label>
-                            <input type = "tel" id = "telefonoPersona" name = "telefonoPersona" class ="inputForm" required
-                            placeholder="(xx) xxx xxx xxxx" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-                            </div>                                
-                        <div class = caja_mi_reserva3> 
-                            <label for = "tipoDocumento">TIPO DE DOCUMENTO</label>
-                            <select class ="inputForm" name = "tipoDocumento" id = "tipoDocumento" required >
-                                <option value="CC">Cedula de Ciudadania</option>
-                                <option value="CE">Cedula de Extranjeria</option>
-                                <option value="PA">Pasaporte</option>
-                            </select>
-                        </div>
-                        <div class = caja_mi_reserva3> 
-                            <label for = "numeroDocumento">NÚMERO DOCUMENTO</label>
-                            <input type ="text" id ="numeroDocumento" name = "numeroDocumento" class ="inputForm" required/>
-                        </div>
-                    </div>    
-                </form>      
-                <section class = "botones_actualiza_elimnar">
-                    <!-- BOTONES -->
-                    <input type="submit" value="ACTUALIZAR RESERVA" class="boton_actualizar ">
-                </section>
-                
+                    <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+                </div>
             </div>
-    </div>  
-</main>  
+        </div>
+      
+    
+    </main>  
 </body>
 <footer>
     <div class="conocenos">

@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class ="body_destinos">
     <header class="headeAzul">
         <h1 class="logoblanco"><a title="logoFooter" href="index.html">
                 <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
@@ -71,7 +71,7 @@
                         </section>
                         <section class="datosHuespedes">
                             <p>Huespedes</p>
-                            <select class="select2">
+                            <select class="select2" id="numero_adultos_destinos">
                                 <option value="1">1 Adulto</option>
                                 <option value="2" selected>2 Adultos</option>
                                 <option value="3">3 Adultos</option>
@@ -81,7 +81,7 @@
 
                         <section>
                             <img class="img3H" src="Image/icoHab.svg">
-                            <select class="select3" style="width: 80px;">
+                            <select class="select3" style="width: 80px;" id="numero_hab_destinos">
                                 <option value="1">1 hab</option>
                                 <option value="2">2 hab</option>
                                 <option value="3">3 hab</option>
@@ -94,36 +94,59 @@
                                 src="Image/lupa.svg"></div>
                     </div>
                 </section>
-
-                <script>
-                    document.getElementById('infoIN').value = localStorage.getItem("fechaCheckIn");
-                    document.getElementById('infoOUT').value = localStorage.getItem("fechaCheckOut");
-
-                </script>
             </form>
         </div>
+        <!-- ::::: MODALES ::::: -->
+        <!-- MODAL - SELECCIONE UN DESTINO  -->
+        <div id="openModal" class="modalDialog" onclick="javascript:CerrarModal();">
+            <div class="modal1">
+                <a href="#close" title="close" class="close" onclick="javascript:CerrarModal();">X</a>
+                <img src="Image/esperandoRespuesta.svg">
+                <p><span style="font-size: 16px; font-weight: 200;">¡POR FAVOR!<br></span>
+                    <span>SELECCIONA UNDESTINO</span></p>
+            </div>
+        </div>
+        <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
+        <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
+            <div class="modal2">
+                <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
+                <img src="Image/verificacionFechas.svg">
+                <p><span style="font-size: 15px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
+                    <span> REVISA TU FECHA DE CHECK OUT</span></p>
+            </div>
+        </div>
+        <!-- MODAL HABITACIONES MAS QUE HUESPEDES -->  
+        <div id="openModal3" class="modalDialog" >
+            <div class="modal3">
+                <img src="Image/numero_habitaciones.svg">
+                <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+                <input type="button" id = "btn_modal_cancelar" class="btn_modal_cancelar" value = "CANCELAR" onclick="javascript:cancelar()">
+                <p><span style="font-size: 15px; font-weight: 200;">EL NÚMERO DE HABITACIONES ES MAYOR QUE LOS HUÉSPEDES...</span>
+                    <br><span class ="pregunta_modal"> ¿SEGURO DESEAS RESERVAR ESA CANTIDAD DE HABITACIONES? SI NO, RESERVA UNA CANTIDAD MENOR</span></p>     
+            </div>
+        </div>
 
+
+         <!-- ::::: DESTINO ::::: -->
         <div>
-
             <div class="cajaPrincipalDestinos">
-
                 <div class="destinos">
                     <p class="tituloDestinos"> SELECCIONA UNO DE NUESTROS DESTINOS</p>
-                    <section>
-                        <section class="destino1">
-                            <section class="cajaDestino"><a href="bogota.html">
+                   
+                        <section class="destino1" id ="bogota" value ="bogota">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoB()">
                                     <img class="imgDestino1" src="Image/bogota.jpg">
 
                             </section></a>
                             <section>
                                 <h4><b>Bogotá</b></h4>
-                                <p>3 Hoteles con Desayuno Incluido</p><br>
-                                <p>Noche desde $50.000</p>
+                                
+                                <p>Noche desde $150.000</p>
                             </section>
                         </section>
 
-                        <section class="destino2">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                        <section class="destino2" id ="cartagena">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoCR()">
                                     <img class="imgDestino2" src="Image/Cartagena.png">
                             </section></a>
                             <section>
@@ -132,8 +155,8 @@
                                 <p>Noche desde $245.000</p>
                             </section>
                         </section>
-                        <section class="destino3">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                        <section class="destino3" id ="medellin">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoM()">
                                     <img class="imgDestino3" src="Image/medellin.jpg">
                             </section></a>
                             <section>
@@ -142,10 +165,10 @@
                                 <p>Noche desde $40.000</p>
                             </section>
                         </section>
-                    </section>
-                    <section>
-                        <section class="destino4">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                   
+                    
+                        <section class="destino4" id ="san andres">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoSA()">
                                     <img class="imgDestino4" src="Image/SanAndres.jpg">
 
                             </section></a>
@@ -156,8 +179,8 @@
                             </section>
                         </section>
 
-                        <section class="destino5">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                        <section class="destino5" id ="cali">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoC()">
                                     <img class="imgDestino5" src="Image/Cali.png">
                             </section></a>
                             <section>
@@ -166,8 +189,8 @@
                                 <p>Noche desde $35.000</p>
                             </section>
                         </section>
-                        <section class="destino6">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                        <section class="destino6" id ="santa marta">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoSM()">
                                     <img class="imgDestino6" src="Image/Santa Marta.jpeg">
                             </section></a>
                             <section>
@@ -176,10 +199,9 @@
                                 <p>Noche desde $165.000</p>
                             </section>
                         </section>
-                    </section>
-                    <section>
-                        <section class="destino7">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                    
+                        <section class="destino7" id ="barichara">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoBC()">
                                     <img class="imgDestino7" src="Image/Barichara.jpg">
                             </section></a>
                             <section>
@@ -188,8 +210,8 @@
                                 <p>Noche desde $200.000</p>
                             </section>
                         </section>
-                        <section class="destino8">
-                            <section class="cajaDestino"><a href="destino-seleccionado.html">
+                        <section class="destino8" id ="leticia">
+                            <section class="cajaDestino"><a href="destino-seleccionado.html" onclick="seleccionardestinoL()">
                                     <img class="imgDestino8" src="Image/Leticia.jpg">
                             </section></a>
                             <section>
@@ -206,64 +228,64 @@
                                     ENTERARTE DE NUESTROS <br>NUEVOS DESTINOS</p>
                             </section>
                         </section>
-                    </section>
+                    
                 </div>
             </div>
 
-            <div class="nuevasAventuras2" style="top:400px;">
-                <section><img class="bannerAventuras" src="Image/Valle.jpg"></section>
+            
+             <!-- ::::: EXPLORA NUEVAS AVENTURAS ::::: -->
+        <article>
+            <section class="nuevasAventuras">
+            
                 <div class="cardAventuras">
+                    <!-- CARD 1 - EXPLORA NUEVAS AVENTURAS -->
+                    <!-- TEXTO/BOTON - EXPLORA NUEVAS AVENTURAS -->
+                    <section class="textAventuras">
+                        <p><span class="txt1Aventuras">EXPLORA NUEVAS</span><br><span class="txt2Aventuras">AVENTURAS</span></p>
+                        <!-- BOTON - PRUEBA ALGO NUEVO -->
+                        <a href="destinos.html">
+                            <div class="btnAventuras"><p class=txtbtn>PRUEBA ALGO NUEVO</p></div>
+                        </a>
+                    </section>
                     <section class="grupoCard1">
-                        <section class="cardP1NA"><a href="index.html">
-                                <section class="card1NA">
-                                    <img class="destinop1" src="Image/Cabañas.jpg">
-                                </section>
-                        </section>
-                        <section class="btnAventuras2">
-                            <p class=txtbtn>CABAÑAS / SAN ANDRES
-                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE
-                                    250.000</span>
-                            </p>
-                        </section></a>
+                        <a href="destinos.html">
+                            <div class="cardP1NA"> 
+                                <div class="card1NA"> <img class="destinop1" src="Image/Cabañas.jpg"></div>
+                            </div>
+                            <div class="btnAventuras2">
+                                <p class=txtbtn>CABAÑAS / SAN ANDRES 
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE 250.000</span></p> 
+                            </div>
+                        </a>
                     </section>
+                    <!-- CARD 2 - EXPLORA NUEVAS AVENTURAS -->
                     <section class="grupoCard2">
-                        <section class="cardP2NA"><a href="index.html">
-                                <section class="card2NA">
-                                    <img class="destinop2" src="Image/Glamping.jpg">
-                                </section>
-                        </section>
-                        <section class="btnAventuras3">
-                            <p class=txtbtn>GLAMPING / BOGOTÁ
-                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE
-                                    $150.000</span>
-                            </p>
-                        </section></a>
+                        <a href="destinos.html">
+                            <div class="cardP2NA">
+                                    <div class="card2NA"><img class="destinop2" src="https://imagenesnoticias.canalrcn.com/ImgNoticias/inline-images/bajoelcielo_glamping.jpg"></div>
+                            </div>
+                            <div class="btnAventuras3">
+                                <p class=txtbtn>GLAMPING / BOGOTÁ
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE $150.000</span></p>
+                            </div>
+                        </a>
                     </section>
+                    <!-- CARD 3 - EXPLORA NUEVAS AVENTURAS -->
                     <section class="grupoCard3">
-                        <section class="cardP3NA"><a href="index.html">
-                                <section class="card3NA">
-                                    <img class="destinop3" src="Image/bungalows.jpg">
-                                </section>
-                        </section>
-                        <section class="btnAventuras4">
-                            <p class=txtbtn>BUGALOWS / CARTAGENA
-                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE
-                                    550.000</span>
-                            </p>
-                        </section>
-                    </section></a>
-                </div>
-            </div>
-            <section class="textAventuras2">
-                <p><span class="txt1Aventuras">EXPLORA NUEVAS</span><br>
-                    <span class="txt2Aventuras">AVENTURAS</span>
-                </p>
-                <a href="destinos.html">
-                    <section class="btnAventuras">
-                        <p class=txtbtn>PRUEBA ALGO NUEVO</p>
+                        <a href="destinos.html">
+                            <div class="cardP3NA">
+                                <div class="card3NA"><img class="destinop3" src="Image/bungalows.jpg"></div>
+                            </div>
+                            <div class="btnAventuras4">
+                                <p class=txtbtn>BUGALOWS / CARTAGENA
+                                <span style="font-weight:500; font-size:0.938rem; letter-spacing: 0.4px;">DESDE 550.000</span></p>
+                            </div>
+                        </a>
                     </section>
-                </a>
+                </div>
             </section>
+            
+        </article>
 
         </div>
 
@@ -318,5 +340,5 @@
         <p class="txtFinal">Copyright - Miviaje.com - 2022</p>
     </footer>
 </body>
-
+<script src="script-destinos.js"></script>
 </html>

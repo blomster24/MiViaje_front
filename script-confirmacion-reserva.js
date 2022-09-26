@@ -25,10 +25,7 @@ function devolver() {
             }
             return txt
         }
-
         
-        
-
         function token_reserva(token) {
             const complemento_reserva = document.getElementById("confirmacion_reserva")
             let t = token
@@ -85,11 +82,11 @@ function devolver() {
                         <p style = "margin:20px auto;"><span style = "font-size:18px; font-weight: 700;">$${(localStorage.getItem("precioHab") * 1).toLocaleString('de-DE')}</span> por noche</p>
 
                         <p style = "text-align: right; padding-right:20px;">
-                            <span style = "color: #E48D36;">Total por </span> ${numeroNoches().toLocaleString('de-DE')} 
-                            <span style = "color: #E48D36;">${txtnoche()}</span></p>
+                        <span style = "color: #E48D36;font-size:13px">TOTAL POR </span> ${numeroNoches().toLocaleString('de-DE')} 
+                         <span style = "color: #E48D36; font-size:13px">${txtnoche()} Y </span> ${localStorage.getItem("numeroHabitaciones")}<span style = "color: #E48D36;font-size:13px"> ${txthabi()}</span> </p>
 
                         <p style = "margin:5px 0 0 0; text-align: right; padding-right:20px;">$
-                        <span style ="font-size:25px; font-weight: 700;"> ${((localStorage.getItem("precioHab") * 1) * numeroNoches()).toLocaleString('de-DE')}</span><p>
+                        <span style ="font-size:25px; font-weight: 700;"> ${((localStorage.getItem("precioHab")*1) * numeroNoches() * localStorage.getItem("numeroHabitaciones")).toLocaleString('de-DE')}</span><p>
                     </div>
                     `
             div += "</div>"
@@ -111,14 +108,22 @@ function devolver() {
 
         }
        
-        function txtnoche() {
-            let txt = "noches"
-            if (numeroNoches() == 1) {
-                txt = "noche"
+        function txtnoche(){
+            let txt = "NOCHES"
+            if(numeroNoches() == 1){
+                txt = "NOCHE"
             }
             return txt
         }
         txtnoche()
+        function txthabi(){
+            let txt = "HABITACIONES"
+            if(localStorage.getItem("numeroHabitaciones") == 1){
+                txt = "HABITACIÓN"
+            }
+            return txt
+        }
+        txthabi()
         set_value_hote()
 
         

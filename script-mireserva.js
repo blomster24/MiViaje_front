@@ -19,8 +19,7 @@ function get_data_form(evt) {
         token: form.token.value  
     }
     limpiar_formulario()
-    return reserva
-    
+    return reserva 
 }
 
 // Funcion para limpiar el localStorage
@@ -32,7 +31,6 @@ function verificacion(){
     if(document.getElementById("numeroDocumento").value != "" && document.getElementById("token").value != ""){
         window.location.href = 'mireserva_resultado.html'
     }
-    
 }
 
 window.onload = clearStorage;

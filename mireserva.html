@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class = "mi_reserva_body">
     <header class="headeAzul">
         <h1 class="logoblanco"><a title="logoFooter" href="index.html">
                 <img id="logoBlanco" src="Image/logoblanco copy.svg" alt="logoFooter"></h1></a>
@@ -23,12 +23,13 @@
             <a href="404.html">Contactenos</a>
         </nav>
     </header>
-    <main>
+    <main class = "mi_reserva_main">
    
     <div class="mireserva" id ="mireserva">
         <section class = "formulario_mi_reserva">
             
             <form onsubmit="get_data_form(event)" action="mireserva_resultado.html" method="post" >
+                
                 <div class ="cajasTexto_mireserva">
                     <!-- FROMULARIO MIRESERVA -->
                     <label for = "tipoDocumento">TIPO DE DOCUMENTO</label>
@@ -46,17 +47,21 @@
               
                         <!-- Boton -->
                     <button class="boton2" type="submit" onclick="verificacion()">CONSULTAR RESERVA </button>
-                    <p> OLIVDE MI CODIGO DE RESERVA</p>
+                    <p class = "olivde_codigo"> OLIVDE MI CODIGO DE RESERVA</p>
             
                 </div>
             </form>
         </section> 
+        <section class ="mireserva_box_img">
+            <img src = "Image/mireserva.svg">
+
+        </section>
          
     </div>
     
 </main>
 </body>
-<footer class = "footer2">
+<footer class = "footer2" id ="footer_mireserva">
     <div class="conocenos">
         <p>Conócenos</p>
         <ul class="listaConocenos">

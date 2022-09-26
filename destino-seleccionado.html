@@ -26,9 +26,11 @@
         </nav>
     </header>
     <main>
+        <!-- ::::: FORMULARIO RESERVA INDEX ::::: --> 
         <article id="box">
             <form class="formulario">
                 <section class="cajaPrincipal">
+                    <!-- SELEC DESTINO  -->
                     <section class="ciudad">
                         <div class="imgCiudad"><img src="Image/VectoricoCiudad.svg"></div>
                         <div class="datosCiudad">
@@ -46,6 +48,7 @@
                             </select>
                         </div>
                     </section>
+                    <!-- CHECK IN  -->
                     <section class="checkIn">
                         <div class="imgCalendarioIN"><img src="Image/Vectorcalendario.svg"></div>
                         <div class="datosCheckIN">
@@ -54,6 +57,7 @@
                                 onkeydown="return false">
                         </div>
                     </section>
+                    <!-- CHECK OUT  -->
                     <section class="checkOut">
                         <div class="imgCalendarioOut"><img src="Image/Vectorcalendario.svg"></div>
                         <div class="datosCheckOut">
@@ -62,6 +66,7 @@
                                 onkeydown="return false">
                         </div>
                     </section>
+                     <!-- HUESPEDES -->
                     <section class="huespedes">
                         <div class="imgHuespedes"><img src="Image/icoHuesped.svg "></div>
                         <div class="datosHuespedes">
@@ -73,6 +78,7 @@
                                 <option value="4">4 Adultos</option>
                             </select>
                         </div>
+                        <!-- HABITACIONES -->
                         <div>
                             <img class="img3H" src="Image/icoHab.svg">
                             <select id="numHabiDS" class="select3" style="width: 80px;">
@@ -90,14 +96,42 @@
                 </section>
             </form>
         </article>
-
+        <!-- ::::: MODALES ::::: -->
+            <!-- MODAL - SELECCIONE UN DESTINO  -->
+            <div id="openModal" class="modalDialog" onclick="javascript:CerrarModal();">
+                <div class="modal1">
+                    <a href="#close" title="close" class="close" onclick="javascript:CerrarModal();">X</a>
+                    <img src="Image/esperandoRespuesta.svg">
+                    <p><span style="font-size: 16px; font-weight: 200;">¡POR FAVOR!<br></span>
+                        <span>SELECCIONA UNDESTINO</span></p>
+                </div>
+            </div>
+            <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
+            <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
+                <div class="modal2">
+                    <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
+                    <img src="Image/verificacionFechas.svg">
+                    <p><span style="font-size: 15px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
+                        <span> REVISA TU FECHA DE CHECK OUT</span></p>
+                </div>
+            </div>
+            <!-- MODAL HABITACIONES MAS QUE HUESPEDES -->  
+            <div id="openModal3" class="modalDialog" >
+                <div class="modal3">
+                    <img src="Image/numero_habitaciones.svg">
+                    <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+                    <input type="button" id = "btn_modal_cancelar" class="btn_modal_cancelar" value = "CANCELAR" onclick="javascript:cancelar()">
+                    <p><span style="font-size: 15px; font-weight: 200;">EL NÚMERO DE HABITACIONES ES MAYOR QUE LOS HUÉSPEDES...</span>
+                        <br><span class ="pregunta_modal"> ¿SEGURO DESEAS RESERVAR ESA CANTIDAD DE HABITACIONES? SI NO, RESERVA UNA CANTIDAD MENOR</span></p>     
+                </div>
+            </div>            
+        <!-- ::::: LISTA DE HOTELES POR API ::::: -->
         <article class="hoteles">
             <section class="hotel1" id="hoteldisponible">
-
             </section>
         </article>
-
     </main>
+     <!-- ::::: FOOTER ::::: -->
     <footer>
         <div class="conocenos">
             <p>Conócenos</p>

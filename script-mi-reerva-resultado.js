@@ -3,15 +3,17 @@
 let URL_R = "http://localhost:8080/api/reservas/cedulatoken"
 URL_R += "?numeroDocumento=" + localStorage.getItem("numeroDocumento") + "&token=" + localStorage.getItem("token") + "&tipoDocumento=" + localStorage.getItem("tipoDocumento")
 
+// OBTENIENDO JSON
 async function get_info_reserva(url) {
     const respuesta = await fetch(url)
     const inforeserva = await respuesta.json()
     return inforeserva
 }
+// EXTRAYENDO INFORMACION DEL JSON
 async function mainR() {
     const url = URL_R
-    const info = await get_info_reserva(url)
-    console.table(info)
+    const info = await get_info_reserva(url) // LLAMANDO FUNCION PARA OBTENER JSON
+    //console.table(info)
 
     // :::::  INFORMACION RESERVA ::::::
     // <-- ID RESERVA -->
@@ -47,35 +49,39 @@ async function mainR() {
     let id_hr = info.fkHotel
     localStorage.setItem("idHotelReserva", id_hr)
 
-    console.log(" fkhotel ->" + localStorage.getItem("idHotelReserva"))
+    //console.log(" fkhotel ->" + localStorage.getItem("idHotelReserva"))
 
-    mostrar()
+    mostrar() // LLAMADO DE FUNCION PARA MOSTRAR INFO DE LA RESERVA DE ACUERDO AL RESULTADO, SI NO SE MUESTRA MODAL SIN RESERVA
 }
-mainR()
-
+mainR() // LLAMADO FUNCION PRINCIPAL
 
 function mostrar() {
     // :::::  SI EXISTE LA RESERVA SE MUESTRA LA INFORMACION - SI NO SE DEVUELVE ::::::
     if (localStorage.getItem("idHotelReserva") != 0) {
 
         // :::::  OBTENIENDO INFORMACION DEL HOTEL DE LA RESERVA ::::::
+        // URL API OBTENER HOTELES
         let URL_H = "http://localhost:8080/api/hoteles/"
         URL_H += localStorage.getItem("idHotelReserva")
 
+        // OBTENIENDO INFO HOTEL, CONVIRTIENDO A JSON
         async function get_info_hotel(url) {
             const respuestaH = await fetch(url)
             const infoHotel = await respuestaH.json()
             return infoHotel
         }
+        // ::: FUNCION OBTENIENDO INFO HOTEL DE ACUERDO AL ID
         async function mainH() {
             const url = URL_H
             const info = await get_info_hotel(url)
             console.table(info)
             set_value_hote(info)
-            saludo()
+            saludo() //SI SE OBTIENE INFORMACIÓN DEL HOTEL SE SALUDA AL HUESPED
         }
         mainH()
 
+        // ::::: FRONT ::::::
+        // SALUDO INICIAL MENSAJE DE ADVERTENCIA SOBRE MODIFICACION DE RESERVA
         function saludo() {
             const saludo = document.getElementById("txt_inicial_mireserva_resultado")
             let div = "<div>"
@@ -83,14 +89,15 @@ function mostrar() {
                     <p class = "advertencia_mireserva">  <span style = "font-size: 20px;"><span style ="color:#E48D36;">HOLA</span> ${(localStorage.getItem("nombre")).toUpperCase()} ${(localStorage.getItem("apellido")).toUpperCase()}</span>
                     <br>SI DESEAS HOSPEDARTE EN OTRO HOTEL, CANCELA ESTA RESERVA Y REALIZA UNA NUEVA CON EL HOTEL QUE DESEES.<br> <span style = "font-weight: 500;">SI SOLO QUIERES ACTUALIZAR TUS DATOS O CONDICIONES DE TU RESERVA HAZLO EN EL SIGUIENTE FORMULARIO.</span></p>
                 `
-
             div += "</div>"
             saludo.innerHTML += div
         }
+
         // :::::  CARD CON INFORMACION DEL HOTEL DE LA RESERVA ::::::
         function set_value_hote(hotel) {
             const card_hotel = document.getElementById("hotelSeleccionadoApi")
             let div = "<div class = 'box-img'>"
+            // EXTRACCION DE INFORMACION DEL JSON HOTEL
             const h = hotel
             let imghr = h.imagen
             localStorage.setItem("imgHotelDS", imghr)
@@ -98,9 +105,7 @@ function mostrar() {
             localStorage.setItem("namehotel", namehotel)
             let costohab = h.costoHabitacion
             localStorage.setItem("precioHab", costohab)
-
             div += `
-            
             <div class ="imgHotelSelec">
                 <img src = "${h.imagen}">
             </div>
@@ -125,22 +130,21 @@ function mostrar() {
                     <span style = "font-size:14px; font-weight: 700;">${localStorage.getItem("numeroHabitaciones")}</span></p>
                 </div>
                 
-                <p style = "margin:20px auto;"><span style = "font-size:18px; font-weight: 700;">$${(((h.costoHabitacion) * 1).toLocaleString('de-DE'))}</span> por noche</p>
+                <p style = "margin:25px auto;"><span style = "font-size:18px; font-weight: 700;">$${(((h.costoHabitacion) * 1).toLocaleString('de-DE'))}</span> por noche</p>
         
-                <p style = "text-align: right; margin: 45px 0 0 0; padding-right:20px;">
-                    <span style = "color: #E48D36;">Total por </span> ${numeroNoches()} 
-                    <span style = "color: #E48D36;">${txtnoche()}</span></p>
-                    
-        
-                <p style = "text-align: right; padding-right:20px; margin: 10px 0 0 0;">$
-                <span style ="font-size:25px; font-weight: 700;"> ${((((h.costoHabitacion) * 1) * numeroNoches()).toLocaleString('de-DE'))}</span><p>
-                <input type="reset" value="CANCELAR RESERVA" class="boton_cancelar" onclick="borrar_reserva(${localStorage.getItem("idReservas")})">
+                <p style ="margin-top:-10px">
+                        <span style = "color: #E48D36; font-size:13px; ">TOTAL POR </span> ${numeroNoches().toLocaleString('de-DE')} 
+                        <span style = "color: #E48D36; font-size:13px">${txtnoche()} Y </span> ${localStorage.getItem("numeroHabitaciones")}<span style = "color: #E48D36;font-size:13px"> ${txthabi()}</span> </p>
+
+                        <p style = "margin:10px 0 0 0; ">$
+                        <span style ="font-size:25px; font-weight: 700;"> ${((localStorage.getItem("precioHab")*1) * numeroNoches() * localStorage.getItem("numeroHabitaciones")).toLocaleString('de-DE')}</span><p>
+                        
+                        <input type="reset" value="CANCELAR RESERVA" class="boton_cancelar" onclick="borrarMain()">
             </div>
             `
             div += "</div>"
             card_hotel.innerHTML += div
         }
-
         // :::::  FORMULARIO CON LA INFORMAICON DE LA RESERVA ::::::
         function formulario_Actualizar() {
             const formu_actualizar = document.getElementById("form_reserva_mireserva")
@@ -148,9 +152,7 @@ function mostrar() {
             div += `
                     <div class ="cajasTexto">   
                         <section class="seleccion_fechas_actualizar_mireserva">
-                        
-                            <div class="caja_principal_seleccion_fechas">
-                                
+                            <div class="caja_principal_seleccion_fechas">  
                                 <div class = caja_mi_reserva>
                                     <label for = "checkin" >CHECK-IN</label>
                                         <div class="caja_seleccion_mireserva">
@@ -198,10 +200,8 @@ function mostrar() {
                                                 </select>
                                             </div>
                                         </div>
-                                </div> 
-                               
+                                </div>    
                         </div>  
-                        
                         <div class ="datos_personales">
                             <div class = caja_mi_reserva3> 
                                 <label for = "nombrePersona" >NOMBRE</label>
@@ -231,7 +231,7 @@ function mostrar() {
                             <div class = caja_mi_reserva3> 
                                 <label for = "telefonoPersona">TELÉFONO</label>
                                 <input type = "tel" id = "telefonoPersona" name = "telefonoPersona" class ="inputForm" required
-                                placeholder="(xx) xxx xxx xxxx" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                                placeholder="(xx) xxx xxx xxxx" />
                                 </div>                                
                             <div class = caja_mi_reserva3> 
                                 <label for = "tipoDocumento">TIPO DE DOCUMENTO</label>
@@ -251,32 +251,14 @@ function mostrar() {
                     </div>
                     <section class = "botones_actualiza_elimnar">
                         <!-- BOTONES -->
-                        <input type="submit" value="ACTUALIZAR RESERVA" class="boton_actualizar ">
-                        
+                        <input type="submit" value="ACTUALIZAR RESERVA" class="boton_actualizar ">   
                     </section>
-                
-               
             `
             div += "</div>"
             formu_actualizar.innerHTML += div
-            rellarFormulario()
-
+            rellarFormulario() // LLAMADO DE FUNCION QUE RELLENA EL FORMULARIO CON LOS DATOS OBTENIDOS DEL JSON RESERVA
         }
-        // Funcion para establcer la fecha del Check In y no permitir escoger una fecha anterior
-        function verificarFechaIN() {
-            let fecha = new Date(); //Fecha actual
-            let mes = fecha.getMonth() + 1; //obteniendo mes
-            let dia = fecha.getDate(); //obteniendo dia
-            let ano = fecha.getFullYear(); //obteniendo año
-            if (dia < 10)
-                dia = '0' + dia; //agrega cero si el menor de 10
-            if (mes < 10)
-                mes = '0' + mes //agrega cero si el menor de 10
-            let min = ano + "-" + mes + "-" + dia;
-            return min + 1
 
-        }
-        verificarFechaIN()
         // ::::: FUNCION PARA RELLANR EL FORMULARIO CON LOS DATOS DE LA RESERVA ::::::
         function rellarFormulario() {
             document.getElementById("nombrePersona").setAttribute("value", localStorage.getItem("nombre"))
@@ -290,12 +272,22 @@ function mostrar() {
             document.getElementById("idReserva").value = localStorage.getItem("idReservas")
             document.getElementById("token").value = localStorage.getItem("token")
             document.getElementById("fkHotel").value = localStorage.getItem("idHotelReserva")
-
         }
 
 
-        // :::::  LLAMADO DE FUNCIONES ::::::
-        formulario_Actualizar()
+        // FUNCION PARA ESTABLECE LA FECHA DEL CHEKC IN Y CHECK OUT Y NO PERMITIR ESCOGER UNA FECHA MENOR A LA ACTUAL
+        function verificarFechaIN() {
+            let fecha = new Date(); //Fecha actual
+            let mes = fecha.getMonth() + 1; //obteniendo mes
+            let dia = fecha.getDate(); //obteniendo dia
+            let ano = fecha.getFullYear(); //obteniendo año
+            if (dia < 10)
+                dia = '0' + dia; //agrega cero si el menor de 10
+            if (mes < 10)
+                mes = '0' + mes //agrega cero si el menor de 10
+            let fechaHoy = ano + "-" + mes + "-" + dia;
+            return fechaHoy
+        }
 
         // :::::: FUNCION PARA CONOCER EL NUMERO DE NOCHES ENTRE LAS FECHAS DE RESERVA :::::
         function numeroNoches() {
@@ -310,27 +302,30 @@ function mostrar() {
             return diferenciaDia
         }
         // :::: FUNCION PARA CAMBIAR TEXTO NOCHES O NOCHE
-        function txtnoche() {
-            let txt = "noches"
-            if (numeroNoches() == 1) {
-                txt = "noche"
+        function txtnoche(){
+            let txt = "NOCHES"
+            if(numeroNoches() == 1){
+                txt = "NOCHE"
             }
             return txt
         }
-
-
+        txtnoche()
+        function txthabi(){
+            let txt = "HABITACIONES"
+            if(localStorage.getItem("numeroHabitaciones") == 1){
+                txt = "HABITACIÓN"
+            }
+            return txt
+        }
+        txthabi()
+        
+        // :::::  LLAMADO DE FUNCIONES ::::::
+        formulario_Actualizar()
+        verificarFechaIN() 
     } else {
-        NO_existe_reserva()
+        no_existe_reserva()
     }
 }
-
-// ::: FUNCION VERIFICAR FECHAS
-function verificar_fechas(){
-    if (localStorage.getItem("fechaCheckIn") > localStorage.getItem("fechaCheckOut")) {
-        mostrarModalFechas()
-    }
-}
-
 
 // ::::: FUNCION PARA CREAR EL JSON PARA MODIFICAR RESERVA ::::
 function obtenerInfo(evt) {
@@ -342,7 +337,7 @@ function obtenerInfo(evt) {
         fechaInicial: form.fechaInicial.value,
         fechaFinal: form.fechaFinal.value,
         cantidadPersonas: form.cantidadPersonas.value,
-        cantidadHabitaciones:form.numhabiciones.value,
+        cantidadHabitaciones: form.numhabiciones.value,
         nombrePersona: form.nombrePersona.value,
         apellidoPersona: form.apellidoPersona.value,
         correoPersona: form.correoPersona.value,
@@ -352,17 +347,15 @@ function obtenerInfo(evt) {
         fkHotel: form.fkHotel.value
 
     }
-    console.log(reserva)
-    save_info()
+    save_info() // LLAMADO DE FUNCION PARA GUARDAR INFORMACION EN EL LOCAL STORAGE
     if (localStorage.getItem("fechaCheckIn") > localStorage.getItem("fechaCheckOut")) {
-        mostrarModalFechas()   
-    }else{
+        mostrarModalFechas() // LLAMADO DE MODAL
+    } else {
         update(reserva)
     }
-    
-
 }
 
+// ::: FUNCION PARA GUARDAR INFORMACIÓN EN EL LOCALSTORAGE PARA FUTURO ENVIO AL BACK
 function save_info() {
     let nombre = document.getElementById("nombrePersona").value
     localStorage.setItem("nombreAdul", nombre)
@@ -376,41 +369,80 @@ function save_info() {
     localStorage.setItem("fechaCheckOut", fechaOUT)
 
 }
+
+// :::: METODOS DE ACTUALIZACION Y BORRADO DE RESERVAS
+// URL API
 const URL_API = "http://localhost:8080/api/reservas"
 
+// ::: METODO DE ACTUALIZACION RESERVA
 async function update(reserva) {
-    // Enviar petición
+    // ENVIO DE PETICION
     const resp = await fetch(URL_API, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reserva)
+        body: JSON.stringify(reserva) // ENVIO DE INFORMACION FORMATO STRING CONVERTIDO A JSON
     })
     const text = await resp.text()
-    window.location.replace("confirmacion-reserva.html")
+    window.location.replace("confirmacion-reserva.html") // SI ES EXITOSA SE REDIRIGE A LA PAGINA DE CONFIRMACIÓN RESERVA
+}
+function borrarMain(){
+    let text;
+    if (confirm("Seguro quieres cancelar la reserva") == true) {
+        borrar_reserva(localStorage.getItem("idReservas"))
+      } else {
+        alert("Entonces disfruta tu viaje");
+      }
+    
 }
 
+// ::: METODO DE ACTUALIZACION RESERVA
 async function borrar_reserva(id) {
-    // Enviar petición
+    // ENVIO DE PETICION
     const resp = await fetch(`${URL_API}/${id}`, {
         method: 'DELETE'
     })
     const text = await resp.text()
-    alert(text)
-    location.reload()
-}
+    elimiancion_reserva()// SI ES EXITOSA SE REDIRIGE A LA PAGINA DE CONFIRMACIÓN RESERVA
 
-
-function aceptar() {
-    window.location.replace("index.html")
 }
 
 
 //window.onload = clearStorage;
+
+// :::: CREACION MODAL ELIMACION RESERVA :::::
+
+function modal_elimicion(){
+    const modal_elimnacion = document.getElementById("openModal5")
+    let div = "<div>"
+    div += 
+        `<img class="logoBlanco_modal5" src="Image/logoblanco copy.svg">
+        <div class="modal5">
+            <a href="index.html"><img src="Image/cancelacion_reserva.svg"></a>
+            <div class ="txt_modal_eliminacion_reserva">
+                <p class ="ups_cancelacion_reserva">!UPS!</p> 
+                <p class = "nombre_persona_cancelacion_reserva">${(localStorage.getItem("nombre").toUpperCase())} ${(localStorage.getItem("apellido").toUpperCase())}</p>
+                <p class = "nombre_persona_cancelacion_reserva">TU RESERVA HA SIDO <br>CANCELADA<span style="font-size: 17px;">*</span></p>
+                <p class ="txt1_eliminada" style="margin-top:20px ;">LAMENTAMOS QUE HAYAS CANCELADO TU RESERVA,</p> 
+                <p class ="txt1_eliminada" style="font-weight: 600; margin-top:5px;">ESPERAMOS VERTE PRONTO DE NUEVO</p>
+                <p class ="txt3_eliminada" style="font-style:italic ;">*Después de cancelada la reserva no se puede modificar, si deseas obtener la misma reserva te invitamos a que la realices de nuevo en las fechas deseadas.</p>
+
+                <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+            </div>
+        </div>
+    </div>
+    `
+    div += "</div>"
+    modal_elimnacion.innerHTML += div
+}
+
+
+
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // FUNCIONES PARA MODALES 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// MODAL CHEK OUT ANTES QUE CHECK IN
 function mostrarModalFechas() {
     document.getElementById('openModal2').style.display = 'initial';
 }
@@ -419,17 +451,35 @@ function CerrarModal2() {
     document.getElementById('openModal2').style.display = 'none';
 }
 
-function NO_existe_reserva() {
-    document.getElementById('openModal3').style.display = 'block';
+// MODAL NO EXISTE RESERVA EN LA BASE DE DATOS
+function no_existe_reserva() {
+    document.getElementById('openModal4').style.display = 'block';
 }
 
-function CerrarModal3() {
-    document.getElementById('openModal3').style.display = 'none';
+function CerrarModal4() {
+    document.getElementById('openModal4').style.display = 'none';
+}
+
+// MODAL LA RESERVA FUE ELIMINADA
+function elimiancion_reserva() {
+    modal_elimicion()
+    document.getElementById('openModal5').style.display = 'block';
+}
+
+function CerrarModal5() {
+    document.getElementById('openModal5').style.display = 'none';
+}
+
+// ::: FUNCION BOTON ACEPTAR - MODAL NO EXISTE RESERVA
+function aceptar() {
+    clearStorage()
+    window.location.replace("index.html")
 }
 
 CerrarModal2()
+CerrarModal4()
 
-// Funcion para limpiar el localStorage
+// :::::  Funcion para limpiar el localStorage
 function clearStorage() {
     localStorage.clear();
 }

@@ -69,8 +69,8 @@ function hoteles_disponibles(hoteles) {
                     
                         <div class = fechas_seleccionadas>
                             <section class="checkIn">  
-                                <div class="datosCheckIN">
-                                    <p style ="color: #E48D36;">Check In</p>
+                                <div class="datosCheckIN"  >
+                                    <p style ="color: #E48D36;" >Check In</p>
                                     <p class = "fecha_destino_selecionado" style ="font-weight: 800;">${localStorage.getItem("fechaCheckIn")}</p>
                                 </div>
                             </section>
@@ -191,7 +191,7 @@ let ciudad = localStorage.getItem("ciudadSeleccion")
 async function main() {
     let url = "http://localhost:8080/api/hoteles/ciudad/"
     url += ciudad
-    console.log(url)
+    //console.log(url)
     const hoteles = await obtenerHoteles(url)
     hoteles_disponibles(hoteles)
 }
@@ -219,61 +219,135 @@ function verificarFechaIN() {
     document.getElementById('infoOUT').min = ano + "-" + mes + "-" + dia;
 }
 
+// :::: GUARDAR INFORMACION LOCALSTORAGE - PASAR A OTRO HTML ::::
+function passInformacion() {
+    let fechaIN = document.getElementById('infoIN').value;
+    localStorage.setItem("fechaCheckIn", fechaIN); // Guardando en el localStorage la fecha del checkIn
+    let fechaOUT = document.getElementById('infoOUT').value;
+    localStorage.setItem("fechaCheckOut", fechaOUT); // Guardando en el localStorage la fecha del checkOut
+    let destinoSelec = document.getElementById('ciudad').value;
+    localStorage.setItem("ciudadSeleccion", destinoSelec); // Guardando en el localStorage la ciudad
+    let adultosSelec = document.getElementById('numAdult').value;
+    localStorage.setItem("numeroAdultos", adultosSelec); // Guardando en el localStorage la num Huespedes
+    let habSelec = document.getElementById('numHabiDS').value;
+    localStorage.setItem("numeroHabitaciones", habSelec);
+    return true;
+}
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// FUNCIONES BARRA DE BUSQUEDA
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 function funcionBuscar() {
-
     // Validando que las fechas del checkOut no sea antes del checkIN
-    if (document.getElementById('infoIN').value > document.getElementById('infoOUT').value) {
-        mostrarModalFechas()
+    if (document.getElementById('ciudad').value == "BARRANQUILLA") {
+        document.location.href = "destino-seleccionado.html", true;
+
+    } else if (document.getElementById('ciudad').value == "BARICHARA") {
+         document.location.href = "destino-seleccionado.html", true;
+
+    } else if (document.getElementById('ciudad').value == "BOGOTA") {
+        if (document.getElementById('infoIN').value > document.getElementById('infoOUT').value) {
+            mostrarModalFechas()
+            }else if(document.getElementById('numHabiDS').value > document.getElementById('numAdult').value){
+                if(localStorage.getItem("decision") == false || localStorage.getItem("decision") == undefined){
+                    mostrarModalHabitaciones()  
+                } else{
+                    window.location.href = "destino-seleccionado.html", true;
+                }
+            }else if(localStorage.getItem("HUEvsHAB") == 1 ){
+                    window.location.href = "destino-seleccionado.html", true;
+            } 
+
+    } else if (document.getElementById('ciudad').value == "CALI") {
+        document.location.href = "destinos.html", true;
+
+    //CARTAGENA 
+    } else if (document.getElementById('ciudad').value == "CARTAGENA") {
+        if (document.getElementById('infoIN').value > document.getElementById('infoOUT').value) {
+            mostrarModalFechas()
+            }else if(document.getElementById('numHabiDS').value > document.getElementById('numAdult').value){
+                if(localStorage.getItem("decision") == false || localStorage.getItem("decision") == undefined){
+                    mostrarModalHabitaciones()  
+                }else{
+                    window.location.href = "destino-seleccionado.html", true;
+                }
+            }else if(localStorage.getItem("HUEvsHAB") == 1 ){
+                    window.location.href = "destino-seleccionado.html", true;
+            } 
+
+    } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
+        document.location.href = "destino-seleccionado.html", true;
+
+    } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
+        document.location.href = "destino-seleccionado.html", true;
+        
+    } else if (document.getElementById('ciudad').value == "MEDELLIN") {
+        document.location.href = "destino-seleccionado.html", true;
+
+    } else if (document.getElementById('ciudad').value == "LETICIA") {
+        document.location.href = "destino-seleccionado.html", true;
+    
     } else {
-        if (document.getElementById('ciudad').value == "BARRANQUILLA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "BARICHARA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "BOGOTA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "CALI") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "CARTAGENA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "SAN ANDRES") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "SANTA MARTA") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "MEDELLIN") {
-            document.location.href = "bogota.html", true;
-        } else if (document.getElementById('ciudad').value == "LETICIA") {
-            document.location.href = "bogota.html", true;
-        } else {
-            mostrarModalDestino() // Modal seleccionar Destino
-        }
-        passInformacion() //Ejecutamos la funcion de guardar información para luego utilizarla en los otros html
+        mostrarModalDestino() // Modal seleccionar Destino
     }
-    // Validando que el numero de habitaciones sea menor o igual al numero de huespedes
-    let result;
-    if (document.getElementById('numHab').value > document.getElementById('numAdult').value) {
-        result = window.confirm("El número de habitaciones es mayor al número de huespedes,¿Esta seguro que desea reservar ese numero de habitaciones?")
-        alert(result)
-        if (result == false) {
-            alert("Entonces cambie las habitaciones");
-        }
-    }
-
-    function passInformacion() {
-        let fechaIN = document.getElementById('infoIN').value;
-        localStorage.setItem("fechaCheckIn", fechaIN); // Guardando en el localStorage la fecha del checkIn
-        let fechaOUT = document.getElementById('infoOUT').value;
-        localStorage.setItem("fechaCheckOut", fechaOUT); // Guardando en el localStorage la fecha del checkOut
-        let destinoSelec = document.getElementById('ciudad').value;
-        localStorage.setItem("ciudadSeleccion", destinoSelec); // Guardando en el localStorage la ciudad
-        let adultosSelec = document.getElementById('numAdult').value;
-        localStorage.setItem("numeroAdultos", adultosSelec); // Guardando en el localStorage la num Huespedes
-        let habSelec = document.getElementById('numHabiDS').value;
-        localStorage.setItem("numeroHabitaciones", habSelec);
-        return true;
-    }
-
+    passInformacion() //Ejecutamos la funcion de guardar información para luego utilizarla en los otros html
+    localStorage.removeItem("decision")
 }
 
+
+    
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// FUNCIONES PARA MODALES 
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function mostrarModalDestino() {
+    document.getElementById('openModal').style.display = 'block';
+}
+
+function CerrarModal() {
+    document.getElementById('openModal').style.display = 'none';
+}
+
+function mostrarModalFechas() {
+    document.getElementById('openModal2').style.display = 'initial';
+}
+
+function CerrarModal2() {
+    document.getElementById('openModal2').style.display = 'none';
+}
+
+function mostrarModalHabitaciones() {
+    document.getElementById('openModal3').style.display = 'block';
+   
+}
+
+function CerrarModal3() {
+    document.getElementById('openModal3').style.display = 'none';
+}
+
+//:::::: BANDERA ::::::::
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// LLAMADA DE FUNCION
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+let decision = ""
+function aceptar() {
+    decision = true
+    localStorage.setItem("decision", decision)
+    CerrarModal3()
+    window.location.href = "destino-seleccionado.html", true;
+    let e = 1;
+    localStorage.setItem("HUEvsHAB",e)
+}
+function cancelar() {
+    decision = false
+    localStorage.setItem("decision", decision)
+    alert("Entonces cambie las habitaciones");
+    CerrarModal3()
+    window.location.href = "destinos.html"
+}
 
 if(localStorage.getItem("numeroAdultos") == undefined){
     location.href = "index.html"
@@ -286,4 +360,5 @@ function clearStorage() {
     }
 } 
 clearStorage();
+
 

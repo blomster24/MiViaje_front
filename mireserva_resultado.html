@@ -38,25 +38,29 @@
             </form>
         </div>
     </div>  
-     <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
-     <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
-        <div class="modal2">
-            <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
-            <p><span style="font-size: 14px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
-                    <span> REVISA TU FECHA DE CHECK OUT</span></p>
-            <img src="Image/verificacionFechas.svg">
-        </div>
-    </div>
     <!-- MODAL NO SE ENCUENTRA EN EL SISTEMA --> 
-    <div id="openModal3" class="modalDialog2" >
+    <div id="openModal5" class="modalDialog2" >
+        
+    </div>
+    <!-- MODAL ELIMINACION RESERVA--> 
+    <div id="openModal4" class="modalDialog2" >
         <img class="logoBlanco_modal" src="Image/logoblanco copy.svg">
         <div class="modal4">
-            <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
+            <img src="Image/sin_reserva.svg">
             <p><span style="font-size: 15px; font-weight: 200;">UPS! AL PARECER NO TIENES NINGUNA RESERVA</span>
                 <span class ="pregunta_modal3"> REVISA TU NÚMERO DE RESERVA O DOCUMENTO, <br>SI NO TIENES UNA RESERVA CORRE A REALIZAR UNA.</span></p>     
-            <img src="Image/ahorro.svg">
+                <input type="button" id = "btn_modal_aceptar" class="btn_modal_aceptar" value = "ACEPTAR" onclick="javascript:aceptar()">
         </div>
     </div>
+    <!-- MODAL FECHA CHECK OUT ANTES DE LA CHECK IN -->  
+    <div id="openModal2" class="modalDialog" onclick="javascript:CerrarModal2();">
+        <div class="modal2">
+            <a href="#close" title="close" class="close" onclick="javascript:CerrarModal2();">X</a>
+            <img src="Image/verificacionFechas.svg">
+            <p><span style="font-size: 15px; font-weight: 200;">UPS! NO PUEDES SALIR SIN HABER ENTRADO...</span>
+                    <span> REVISA TU FECHA DE CHECK OUT</span></p>
+        </div>
+    </div>    
 </main>  
 </body>
 <footer>
